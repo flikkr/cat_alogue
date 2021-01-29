@@ -1,5 +1,6 @@
-import 'package:cat_alogue/ui/loading/cat_loader.dart';
 import 'package:flutter/material.dart';
+
+import 'screens/home/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,21 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.amber,
       ),
       home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My cats'),
-      ),
-      body: CatLoader(),
     );
   }
 }
