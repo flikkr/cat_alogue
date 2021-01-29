@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/home/home_page.dart';
+import 'utils/route_generator.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.cyan,
       ),
+      initialRoute: Routes.base,
+      onGenerateRoute: RouteGenerator.generateRoute,
       home: HomePage(),
     );
   }

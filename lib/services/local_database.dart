@@ -1,1 +1,4 @@
-class LocalDatabase {}
+class LocalDatabase {
+  
+  /// Cats
+}
