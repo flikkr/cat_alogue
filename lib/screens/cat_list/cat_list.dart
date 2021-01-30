@@ -21,7 +21,7 @@ class CatList extends StatelessWidget {
         icon: Text('😺'),
         label: Text('Add a cat'),
         isExtended: true,
-        onPressed: () => Surround(context).showBottomSheet(CatForm()),
+        onPressed: () => Surround.of(context).showBottomSheet(CatForm()),
       ),
     );
   }

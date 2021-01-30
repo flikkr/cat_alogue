@@ -5,11 +5,18 @@ import 'package:hooks_riverpod/all.dart';
 var catFormProvider = ChangeNotifierProvider((_) => CatFormProvider());
 
 class CatForm extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
-        children: [],
+        children: [
+          TextFormField(
+            decoration: InputDecoration(labelText: 'Cat name '),
+          ),
+        ],
       ),
     );
   }

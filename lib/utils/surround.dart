@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Surround {
   BuildContext context;
 
-  Surround(this.context);
+  Surround.of(this.context);
 
   showBottomSheet(Widget widget) {
     showModalBottomSheet(
