@@ -1,7 +1,7 @@
 import 'package:cat_alogue/models/cat.dart';
-import 'package:cat_alogue/models/interface/repository.dart';
+import 'package:cat_alogue/models/interface/cat_repository.dart';
 
-class MockCatData extends IRepository {
+class MockCatData extends ICatRepository {
   @override
   List<Cat> all() {
     return [

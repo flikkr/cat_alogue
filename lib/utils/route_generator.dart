@@ -1,3 +1,4 @@
+import 'package:cat_alogue/models/cat.dart';
 import 'package:cat_alogue/screens/cat_detail/cat_detail.dart';
 import 'package:cat_alogue/screens/cat_list/cat_list.dart';
 import 'package:cat_alogue/screens/debug/sample_animations.dart';
@@ -22,7 +23,7 @@ class RouteGenerator {
       case Routes.cat_list:
         return _format(Routes.cat_list, CatList());
       case Routes.cat_detail:
-        return args is String
+        return args is Cat
             ? _format(Routes.cat_detail, CatDetail())
             : _errorRoute();
       case Routes.sample_animations:

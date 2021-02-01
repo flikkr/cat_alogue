@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/all.dart';
 
 import 'screens/home/home_page.dart';
 import 'services/local_database.dart';
@@ -7,7 +8,7 @@ import 'utils/route_generator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalDatabase.init();
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
