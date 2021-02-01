@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cat_alogue/models/interface/database_model.dart';
-import 'package:cat_alogue/services/local_database.dart';
 
 class Cat extends IDatabaseModel {
   String name;
