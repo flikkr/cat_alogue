@@ -5,9 +5,21 @@ class MockCatData extends ICatRepository {
   @override
   List<Cat> all() {
     return [
-      Cat(name: 'Shifty', description: 'A really shifty kitty'),
-      Cat(name: 'Pinky', description: 'A really pinky kitty'),
-      Cat(name: 'Lola', description: 'A fat whiny kitty'),
+      Cat(
+        name: 'Shifty',
+        description: 'A really shifty kitty',
+        imagePath: 'assets/img/cat1.jpg',
+      ),
+      Cat(
+        name: 'Pinky',
+        description: 'A really pinky kitty',
+        imagePath: 'assets/img/cat2.jpg',
+      ),
+      Cat(
+        name: 'Lola',
+        description: 'A fat whiny kitty',
+        imagePath: 'assets/img/cat3.jpg',
+      ),
     ];
   }
 }

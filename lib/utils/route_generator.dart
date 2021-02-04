@@ -1,6 +1,7 @@
 import 'package:cat_alogue/models/cat.dart';
 import 'package:cat_alogue/screens/cat_detail/cat_detail.dart';
 import 'package:cat_alogue/screens/cat_list/cat_list.dart';
+import 'package:cat_alogue/screens/debug/debug_screen.dart';
 import 'package:cat_alogue/screens/debug/sample_animations.dart';
 import 'package:cat_alogue/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ abstract class Routes {
   static const String cat_list = '/cats';
   static const String cat_detail = '/cats/detail';
   static const String sample_animations = '/sample_anim';
+  static const String debug_screen = '/debug';
 }
 
 class RouteGenerator {
@@ -24,10 +26,12 @@ class RouteGenerator {
         return _format(Routes.cat_list, CatList());
       case Routes.cat_detail:
         return args is Cat
-            ? _format(Routes.cat_detail, CatDetail())
+            ? _format(Routes.cat_detail, CatDetail(args))
             : _errorRoute();
       case Routes.sample_animations:
         return _format(Routes.sample_animations, SampleAnimations());
+      case Routes.debug_screen:
+        return _format(Routes.debug_screen, DebugScreen());
       default:
         // If there is no such named route in the switch statement, e.g. /example
         return _errorRoute();

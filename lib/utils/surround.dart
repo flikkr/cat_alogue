@@ -31,4 +31,15 @@ class Surround {
       },
     );
   }
+
+  showDialogBox(Widget widget) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: EdgeInsets.all(10),
+        child: widget,
+      ),
+    );
+  }
 }

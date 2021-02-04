@@ -17,6 +17,10 @@ class AppDrawer extends StatelessWidget {
             title: Text('Animations'),
             onTap: () =>
                 Navigator.of(context).pushNamed(Routes.sample_animations),
+          ),
+          ListTile(
+            title: Text('Debug'),
+            onTap: () => Navigator.of(context).pushNamed(Routes.debug_screen),
           )
         ],
       ),

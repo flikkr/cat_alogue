@@ -9,12 +9,14 @@ class CatListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(cat.name),
-      subtitle: Text(cat.description),
-      onTap: () => Navigator.of(context).pushNamed(
-        Routes.cat_detail,
-        arguments: cat,
+    return Card(
+      child: ListTile(
+        title: Text(cat.name),
+        subtitle: Text(cat.description),
+        onTap: () => Navigator.of(context).pushNamed(
+          Routes.cat_detail,
+          arguments: cat,
+        ),
       ),
     );
   }

@@ -6,11 +6,13 @@ class Cat extends IDatabaseModel {
   String name;
   String description;
   bool isFavourite;
+  String imagePath;
 
   Cat({
     this.name,
     this.description,
     this.isFavourite = false,
+    this.imagePath,
   });
 
   @override

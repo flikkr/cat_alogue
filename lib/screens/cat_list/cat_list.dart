@@ -9,7 +9,8 @@ import 'package:riverpod/all.dart';
 import 'cat_list_provider.dart';
 
 var catListProvider = StateNotifierProvider.autoDispose<CatListProvider>(
-    (_) => CatListProvider(MockCatData()));
+  (_) => CatListProvider(MockCatData()),
+);
 
 class CatList extends HookWidget {
   @override
