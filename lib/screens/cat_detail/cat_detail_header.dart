@@ -21,7 +21,7 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
           fit: BoxFit.cover,
         ),
         Positioned(
-          top: 60,
+          top: 100 - shrinkOffset,
           child: Text(
             'This is ${cat.name}.',
             style: Theme.of(context).textTheme.headline4,
@@ -57,16 +57,16 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
 
   double titleOpacity(double shrinkOffset) {
     // simple formula: fade out text as soon as shrinkOffset > 0
-    return 1.0 - max(0.0, shrinkOffset) / maxExtent;
+    // return 1.0 - max(0.0, shrinkOffset) / maxExtent;
     // more complex formula: starts fading out text when shrinkOffset > minExtent
-    //return 1.0 - max(0.0, (shrinkOffset - minExtent)) / (maxExtent - minExtent);
+    return 1.0 - max(0.0, (shrinkOffset - minExtent)) / (maxExtent - minExtent);
   }
 
   @override
   double get maxExtent => 250;
 
   @override
-  double get minExtent => kTextTabBarHeight;
+  double get minExtent => 80;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
