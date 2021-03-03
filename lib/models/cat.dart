@@ -1,18 +1,23 @@
 import 'dart:convert';
 
 import 'package:cat_alogue/models/interface/database_model.dart';
+import 'package:cat_alogue/models/media_item.dart';
+
+import '../services/local_database.dart';
 
 class Cat extends IDatabaseModel {
   String name;
   String description;
   bool isFavourite;
-  String imagePath;
+  String profileImgPath;
+  List<MediaItem> media;
 
   Cat({
     this.name,
     this.description,
     this.isFavourite = false,
-    this.imagePath,
+    this.profileImgPath,
+    this.media,
   });
 
   @override
@@ -23,8 +28,7 @@ class Cat extends IDatabaseModel {
 
   @override
   Future<int> create(IDatabaseModel model) {
-    // TODO: implement create
-    throw UnimplementedError();
+    // LocalDatabase.db.insert(table, values);
   }
 
   @override

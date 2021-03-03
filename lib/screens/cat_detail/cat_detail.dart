@@ -97,29 +97,24 @@ class CatDetail extends HookWidget {
                 padding: const EdgeInsets.all(4),
                 sliver: SliverStaggeredGrid.countBuilder(
                   crossAxisCount: 4,
-                  itemCount: 13,
+                  itemCount: cat.media?.length ?? 0,
                   itemBuilder: (BuildContext context, int index) => Hero(
                     tag: index,
                     child: Container(
                       child: Material(
                         clipBehavior: Clip.antiAlias,
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.green,
                         child: InkWell(
                           onTap: () => Navigator.of(context).pushNamed(
                             Routes.gallery_view,
-                            arguments: GalleryOptions(items: []),
+                            arguments: GalleryOptions(
+                              initialIndex: index,
+                              items: cat.media,
+                            ),
                           ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: CircleAvatar(
-                                backgroundColor: Colors.white,
-                                child: Text('$index'),
-                              ),
-                            ),
+                          child: Image.asset(
+                            cat.media[index].path,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),

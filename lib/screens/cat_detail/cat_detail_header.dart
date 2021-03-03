@@ -47,7 +47,7 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
             opacity: titleOpacity(shrinkOffset),
             child: CircleAvatar(
               maxRadius: 100,
-              backgroundImage: AssetImage(cat.imagePath),
+              backgroundImage: AssetImage(cat.profileImgPath),
             ),
           ),
         ),

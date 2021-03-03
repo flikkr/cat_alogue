@@ -18,5 +18,5 @@ class GalleryOptions {
     this.initialIndex,
     @required this.items,
     this.scrollDirection = Axis.horizontal,
-  }) : pageController = PageController(initialPage: initialIndex);
+  }) : pageController = PageController(initialPage: initialIndex ?? 0);
 }

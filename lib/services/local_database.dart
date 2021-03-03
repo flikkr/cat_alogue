@@ -15,6 +15,7 @@ class LocalDatabase {
               ''');
         });
       },
+      onConfigure: (db) async => await db.execute("PRAGMA foreign_keys = ON"),
     );
   }
 }
