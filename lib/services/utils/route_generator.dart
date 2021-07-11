@@ -51,7 +51,7 @@ class RouteGenerator {
       settings: RouteSettings(name: routeName),
       builder: (context) {
         // final session = Provider.of<SessionRepository>(context);
-        return destination;
+        return destination as Widget;
       },
     );
   }

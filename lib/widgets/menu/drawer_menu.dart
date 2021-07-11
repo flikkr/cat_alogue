@@ -1,4 +1,4 @@
-import 'package:cat_alogue/utils/route_generator.dart';
+import 'package:cat_alogue/services/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {

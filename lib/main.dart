@@ -1,13 +1,13 @@
+import 'package:cat_alogue/services/utils/route_generator.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'screens/home/home_page.dart';
-import 'services/local_database.dart';
-import 'utils/route_generator.dart';
+import 'services/data/local_database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await LocalDatabase.init();
+  // await LocalDatabase.init();
   runApp(ProviderScope(child: MyApp()));
 }
 
