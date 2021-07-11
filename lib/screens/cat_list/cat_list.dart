@@ -1,21 +1,20 @@
-import 'package:cat_alogue/data/mock_cat_data.dart';
-import 'package:cat_alogue/screens/cat_list/form/cat_form.dart';
-import 'package:cat_alogue/utils/surround.dart';
+import 'package:cat_alogue/models/cat.dart';
+import 'package:cat_alogue/repositories/mock_cat_data.dart';
+import 'package:cat_alogue/services/utils/surround.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/all.dart';
-import 'package:riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'cat_list_provider.dart';
 
-var catListProvider = StateNotifierProvider.autoDispose<CatListProvider>(
+AutoDisposeStateNotifierProvider<CatListProvider, dynamic>? catListProvider = StateNotifierProvider.autoDispose(
   (_) => CatListProvider(MockCatData()),
 );
 
-class CatList extends HookWidget {
+class CatList extends HookWidget with Surround {
   @override
   Widget build(BuildContext context) {
-    var catList = useProvider(catListProvider);
+    var catList = useProvider(catListProvider!);
 
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +29,7 @@ class CatList extends HookWidget {
         icon: Text('😺'),
         label: Text('Add a cat'),
         isExtended: true,
-        onPressed: () => Surround.of(context).showBottomSheet(CatForm()),
+        onPressed: () => showCatForm(context),
       ),
     );
   }

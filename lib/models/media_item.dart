@@ -15,13 +15,13 @@ enum MediaSource { network, local, appDefault }
 
 class MediaItem {
   /// File path or url of the resource file
-  final String path;
+  final String? path;
   final DateTime created = DateTime.now();
-  final MediaType type;
-  final MediaSource source;
-  final Widget subtitle;
+  final MediaType? type;
+  final MediaSource? source;
+  final Widget? subtitle;
 
-  Future<bool> get doesExist async => await File(this.path).exists();
+  Future<bool> get doesExist async => await File(this.path!).exists();
 
   MediaItem({
     this.path,
@@ -31,31 +31,30 @@ class MediaItem {
   });
 
   MediaItem copyWith({
-    String path,
-    String subtitle,
-    MediaSource source,
-    MediaType type,
+    String? path,
+    String? subtitle,
+    MediaSource? source,
+    MediaType? type,
   }) {
     return MediaItem(
       path: path ?? this.path,
-      subtitle: subtitle ?? this.subtitle,
+      subtitle: subtitle as Widget? ?? this.subtitle,
       type: type ?? this.type,
       source: source ?? this.source,
     );
   }
 
-  Widget get imageWidget {
+  Widget? get imageWidget {
     if (type == MediaType.image) {
       switch (source) {
         case MediaSource.appDefault:
-          return Image.asset(path, fit: BoxFit.cover);
-          break;
+          return Image.asset(path!, fit: BoxFit.cover);
         case MediaSource.local:
-          return Image.file(File(path), fit: BoxFit.cover);
-          break;
+          return Image.file(File(path!), fit: BoxFit.cover);
         case MediaSource.network:
-          return Image.network(path, fit: BoxFit.cover);
-          break;
+          return Image.network(path!, fit: BoxFit.cover);
+        default:
+          return null;
       }
     } else {
       //TODO: Implement video playback

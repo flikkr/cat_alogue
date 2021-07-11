@@ -1,13 +1,11 @@
+import 'package:cat_alogue/screens/cat_list/form/cat_form.dart';
+import 'package:cat_alogue/widgets/concatulations_dialog.dart';
 import 'package:cat_alogue/widgets/misc/drag_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Surround {
-  BuildContext context;
-
-  Surround.of(this.context);
-
-  showBottomSheet(Widget widget) {
+mixin Surround {
+  showCatForm(BuildContext context) {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
@@ -23,7 +21,7 @@ class Surround {
             child: Column(
               children: [
                 DragIndicator(),
-                widget,
+                CatForm(),
               ],
             ),
           ),
@@ -32,13 +30,13 @@ class Surround {
     );
   }
 
-  showDialogBox(Widget widget) {
+  showConcatulationsDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => Dialog(
         backgroundColor: Colors.transparent,
         insetPadding: EdgeInsets.all(10),
-        child: widget,
+        child: ConcatulationsDialog(),
       ),
     );
   }

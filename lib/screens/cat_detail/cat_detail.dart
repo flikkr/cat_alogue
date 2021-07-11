@@ -1,8 +1,6 @@
 import 'package:cat_alogue/models/cat.dart';
 import 'package:cat_alogue/models/gallery_options.dart';
-import 'package:cat_alogue/screens/cat_detail/cat_detail_content.dart';
-import 'package:cat_alogue/screens/cat_detail/cat_detail_header.dart';
-import 'package:cat_alogue/utils/route_generator.dart';
+import 'package:cat_alogue/services/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -10,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'cat_detail_provider.dart';
 
-var catDetailProvider =
+AutoDisposeChangeNotifierProviderFamily<CatDetailProvider, Cat>? catDetailProvider =
     ChangeNotifierProvider.autoDispose.family<CatDetailProvider, Cat>(
   (_, cat) => CatDetailProvider(cat),
 );
@@ -22,7 +20,7 @@ class CatDetail extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    var catProvider = useProvider(catDetailProvider(cat));
+    var catProvider = useProvider(catDetailProvider!(cat));
     var controller = useScrollController();
 
     return Scaffold(
@@ -113,7 +111,7 @@ class CatDetail extends HookWidget {
                             ),
                           ),
                           child: Image.asset(
-                            cat.media[index].path,
+                            cat.media![index].path!,
                             fit: BoxFit.cover,
                           ),
                         ),

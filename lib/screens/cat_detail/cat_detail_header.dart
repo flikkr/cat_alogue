@@ -47,7 +47,7 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
             opacity: titleOpacity(shrinkOffset),
             child: CircleAvatar(
               maxRadius: 100,
-              backgroundImage: AssetImage(cat.profileImgPath),
+              backgroundImage: AssetImage(cat.profileImgPath!),
             ),
           ),
         ),
@@ -74,18 +74,18 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
 
   @override
   // TODO: implement showOnScreenConfiguration
-  PersistentHeaderShowOnScreenConfiguration get showOnScreenConfiguration =>
+  PersistentHeaderShowOnScreenConfiguration? get showOnScreenConfiguration =>
       null;
 
   @override
   // TODO: implement snapConfiguration
-  FloatingHeaderSnapConfiguration get snapConfiguration => null;
+  FloatingHeaderSnapConfiguration? get snapConfiguration => null;
 
   @override
   // TODO: implement stretchConfiguration
-  OverScrollHeaderStretchConfiguration get stretchConfiguration => null;
+  OverScrollHeaderStretchConfiguration? get stretchConfiguration => null;
 
   @override
   // TODO: implement vsync
-  TickerProvider get vsync => null;
+  TickerProvider? get vsync => null;
 }
