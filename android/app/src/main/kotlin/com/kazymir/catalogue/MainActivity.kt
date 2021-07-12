@@ -1,4 +1,4 @@
-package com.example.cat_alogue
+package com.kazymir.catalogue
 
 import io.flutter.embedding.android.FlutterActivity
 
