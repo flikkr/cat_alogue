@@ -4,14 +4,6 @@ import 'package:cat_alogue/services/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'cat_detail_provider.dart';
-
-AutoDisposeChangeNotifierProviderFamily<CatDetailProvider, Cat>? catDetailProvider =
-    ChangeNotifierProvider.autoDispose.family<CatDetailProvider, Cat>(
-  (_, cat) => CatDetailProvider(cat),
-);
 
 class CatDetail extends HookWidget {
   final Cat cat;
@@ -20,7 +12,7 @@ class CatDetail extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    var catProvider = useProvider(catDetailProvider!(cat));
+    // var catProvider = useProvider(catDetailProvider!(cat));
     var controller = useScrollController();
 
     return Scaffold(

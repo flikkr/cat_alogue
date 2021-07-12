@@ -1,11 +1,11 @@
-import 'package:cat_alogue/screens/cat_list/form/cat_form_provider.dart';
+import 'package:cat_alogue/models/cat.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-var catFormProvider = ChangeNotifierProvider((_) => CatFormProvider());
 
 class CatForm extends StatelessWidget {
+  final Cat? cat;
   final _formKey = GlobalKey<FormState>();
+
+  CatForm({this.cat});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +15,7 @@ class CatForm extends StatelessWidget {
         children: [
           TextFormField(
             decoration: InputDecoration(labelText: 'Cat name '),
+            initialValue: cat?.name,
           ),
         ],
       ),

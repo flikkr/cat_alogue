@@ -1,12 +1,12 @@
+import 'package:cat_alogue/screens/auth/auth_wrapper.dart';
 import 'package:cat_alogue/services/utils/route_generator.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'screens/home/home_page.dart';
-import 'services/data/local_database.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   // await LocalDatabase.init();
   runApp(ProviderScope(child: MyApp()));
 }
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Cat-alogue',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.cyan,
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: Routes.base,
       onGenerateRoute: RouteGenerator.generateRoute,
-      home: HomePage(),
+      home: AuthWrapper(),
     );
   }
 }

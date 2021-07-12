@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "739064059540",
+    "project_id": "cat-alogue",
+    "storage_bucket": "cat-alogue.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739064059540:android:51f4d0914e2ee4041fc681",
+        "android_client_info": {
+          "package_name": "com.kazymir.catalogue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739064059540-fnr9nnr9ttr4n6bangd0v65ilgr6cthh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDria1-5rso0Z65qulyQ7l9HnmEAiTUp8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739064059540-fnr9nnr9ttr4n6bangd0v65ilgr6cthh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

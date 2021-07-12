@@ -1,20 +1,14 @@
-import 'package:cat_alogue/models/cat.dart';
-import 'package:cat_alogue/repositories/mock_cat_data.dart';
+import 'package:cat_alogue/provider/session_provider.dart';
 import 'package:cat_alogue/services/utils/surround.dart';
+import 'package:cat_alogue/widgets/cat_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'cat_list_provider.dart';
-
-AutoDisposeStateNotifierProvider<CatListProvider, dynamic>? catListProvider = StateNotifierProvider.autoDispose(
-  (_) => CatListProvider(MockCatData()),
-);
-
 class CatList extends HookWidget with Surround {
   @override
   Widget build(BuildContext context) {
-    var catList = useProvider(catListProvider!);
+    var catList = useProvider(catProvider).state;
 
     return Scaffold(
       appBar: AppBar(
@@ -22,7 +16,7 @@ class CatList extends HookWidget with Surround {
       ),
       body: Container(
         child: ListView(
-          children: catList.displayCats(),
+          children: catList.map((cat) => CatListItem(cat: cat)).toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(

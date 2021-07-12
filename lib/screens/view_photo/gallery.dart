@@ -11,7 +11,7 @@ class Gallery extends HookWidget {
   final GalleryOptions options;
 
   Gallery(this.options) {
-    currentPageProvider = StateProvider.autoDispose<int>(((_) => options.initialIndex!) as int Function(AutoDisposeProviderReference));
+    currentPageProvider = StateProvider.autoDispose<int>((_) => options.initialIndex!);
   }
 
   @override
