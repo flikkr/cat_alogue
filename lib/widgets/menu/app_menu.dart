@@ -1,3 +1,4 @@
+import 'package:cat_alogue/services/auth/auth.dart';
 import 'package:cat_alogue/services/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,17 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: Text('Debug'),
             onTap: () => Navigator.of(context).pushNamed(Routes.debug_screen),
-          )
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text('Log out'),
+                onTap: () => signOut(),
+              ),
+            ),
+          ),
         ],
       ),
     );

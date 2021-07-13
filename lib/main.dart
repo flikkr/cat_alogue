@@ -2,6 +2,7 @@ import 'package:cat_alogue/screens/auth/auth_wrapper.dart';
 import 'package:cat_alogue/services/utils/route_generator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() async {
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
+        ),
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme,
         ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,

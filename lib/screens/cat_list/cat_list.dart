@@ -1,4 +1,5 @@
 import 'package:cat_alogue/provider/session_provider.dart';
+import 'package:cat_alogue/services/utils/route_generator.dart';
 import 'package:cat_alogue/services/utils/surround.dart';
 import 'package:cat_alogue/widgets/cat_list_item.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class CatList extends HookWidget with Surround {
         icon: Text('😺'),
         label: Text('Add a cat'),
         isExtended: true,
-        onPressed: () => showCatForm(context),
+        onPressed: () => Navigator.of(context).pushNamed(Routes.add_cat),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:cat_alogue/models/cat.dart';
 import 'package:cat_alogue/models/gallery_options.dart';
+import 'package:cat_alogue/screens/add_cat/cat_form_page.dart';
 import 'package:cat_alogue/screens/auth/sign_in_screen.dart';
 import 'package:cat_alogue/screens/cat_detail/cat_detail.dart';
 import 'package:cat_alogue/screens/cat_list/cat_list.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 abstract class Routes {
   static const String base = '/';
   static const String cat_list = '/cats';
+  static const String add_cat = '/cat';
   static const String cat_detail = '/cats/detail';
   static const String gallery_view = '/gallery_view';
   static const String sample_animations = '/sample_anim';
@@ -31,6 +33,8 @@ class RouteGenerator {
         return args is Cat
             ? _format(Routes.cat_detail, CatDetail(args))
             : _errorRoute();
+      case Routes.add_cat:
+        return _format(Routes.add_cat, CatFormPage(cat: args as Cat?));
       case Routes.sample_animations:
         return _format(Routes.sample_animations, SampleAnimations());
       case Routes.gallery_view:

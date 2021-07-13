@@ -1,8 +1,10 @@
 import 'package:cat_alogue/services/auth/auth.dart';
+import 'package:cat_alogue/widgets/loading/cat_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
+import 'package:lottie/lottie.dart';
 import 'package:stilo/stilo.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -11,69 +13,31 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: StiloEdge.all2,
-        child: Center(
+      body: Center(
+        child: Padding(
+          padding: StiloEdge.all2,
           child: SingleChildScrollView(
             child: Column(
               children: [
-                StiloSpacing.vert10,
-                FormBuilder(
-                  key: _formKey,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FormBuilderTextField(
-                        name: 'email',
-                        decoration: const InputDecoration(
-                            labelText: 'Email',
-                            prefixIcon: Icon(Icons.alternate_email_rounded)),
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context),
-                          FormBuilderValidators.email(context),
-                        ]),
-                      ),
-                      StiloSpacing.vert3,
-                      FormBuilderTextField(
-                        name: 'password',
-                        decoration: const InputDecoration(
-                            labelText: 'Password',
-                            prefixIcon: Icon(Icons.lock_rounded)),
-                        obscureText: true,
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context),
-                          FormBuilderValidators.minLength(context, 8),
-                          FormBuilderValidators.maxLength(context, 16),
-                        ]),
-                      ),
-                    ],
-                  ),
+                Text(
+                  'Welcome to',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                Text(
+                  '😺-alogue',
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+                Lottie.network(
+                    'https://assets4.lottiefiles.com/packages/lf20_dopee6e0.json'),
+                Text(
+                  'The only cat-tracking app',
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 StiloSpacing.vert2,
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text.rich(
-                    const TextSpan(text: 'Forgot password?'),
-                    style: Theme.of(context).textTheme.subtitle1,
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState?.saveAndValidate() ?? false) {
-                      print('Valid');
-                    } else {
-                      print('Invalid');
-                    }
-                    print(_formKey.currentState?.value);
-                  },
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
                 const Divider(),
+                StiloSpacing.vert2,
                 const Text('Sign in with social'),
+                StiloSpacing.vert2,
                 SignInButton(
                   Buttons.GoogleDark,
                   onPressed: () => signInWithGoogle(),
