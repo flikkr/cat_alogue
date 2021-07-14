@@ -1,5 +1,5 @@
 import 'package:cat_alogue/models/cat.dart';
-import 'package:cat_alogue/models/gallery_options.dart';
+import 'package:cat_alogue/models/util/gallery_options.dart';
 import 'package:cat_alogue/screens/add_cat/cat_form_page.dart';
 import 'package:cat_alogue/screens/auth/sign_in_screen.dart';
 import 'package:cat_alogue/screens/cat_detail/cat_detail.dart';

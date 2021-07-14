@@ -1,4 +1,4 @@
-import 'package:cat_alogue/models/media_item.dart';
+import 'package:cat_alogue/models/util/media_item.dart';
 import 'package:cat_alogue/services/data/database_service.dart';
 
 class Cat {
@@ -8,6 +8,7 @@ class Cat {
   bool isFavourite;
   String? profileImgPath;
   List<MediaItem>? media;
+
 
   Cat({
     this.id,

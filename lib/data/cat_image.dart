@@ -1,4 +1,4 @@
-import 'package:cat_alogue/models/media_item.dart';
+import 'package:cat_alogue/models/util/media_item.dart';
 
 var mockImages = [
   MediaItem(

@@ -1,9 +1,15 @@
 import 'package:cat_alogue/models/cat.dart';
+import 'package:cat_alogue/provider/cat_form_provider.dart';
+import 'package:cat_alogue/services/utils/geo.dart';
+import 'package:cat_alogue/widgets/menu/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
 
-class CatFormPage extends StatelessWidget {
+class CatFormPage extends HookWidget {
   final Cat? cat;
   final _formKey = GlobalKey<FormState>();
 
@@ -14,34 +20,73 @@ class CatFormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = useProvider(catFormProvider);
+    var location = useProvider(locationP);
+
     return Scaffold(
-      appBar: AppBar(title: Text(cat == null ? 'Create cat' : 'Edit cat')),
-      body: Column(
-        children: [
-          FormBuilder(
-            key: _formKey,
-            autovalidateMode: AutovalidateMode.disabled,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FormBuilderTextField(
-                  name: 'email',
-                  decoration: const InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.alternate_email_rounded)),
-                ),
-                StiloSpacing.vert3,
-                FormBuilderTextField(
-                  name: 'password',
-                  decoration: const InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock_rounded)),
-                  obscureText: true,
-                ),
-              ],
+      appBar: Navbar(title: cat == null ? 'New cat' : 'Edit cat'),
+      body: Padding(
+        padding: StiloEdge.all2,
+        child: Column(
+          children: [
+            FormBuilder(
+              key: _formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FormBuilderTextField(
+                    name: 'name',
+                    initialValue: cat?.name,
+                    decoration: const InputDecoration(
+                      labelText: 'Cat name',
+                      prefixIcon: Icon(Icons.text_fields),
+                    ),
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context),
+                    ]),
+                  ),
+                  StiloSpacing.vert3,
+                  FormBuilderTextField(
+                    name: 'description',
+                    initialValue: cat?.description,
+                    decoration: const InputDecoration(
+                      labelText: 'Description',
+                      prefixIcon: Icon(Icons.description),
+                    ),
+                    obscureText: true,
+                  ),
+                  StiloSpacing.vert3,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FormBuilderTextField(
+                          name: 'location',
+                          controller:
+                              TextEditingController(text: location.state),
+                          decoration: const InputDecoration(
+                            labelText: 'Location found',
+                            prefixIcon: Icon(Icons.location_on),
+                          ),
+                        ),
+                      ),
+                      StiloSpacing.horiz1,
+                      SizedBox(
+                        height: 55,
+                        width: 55,
+                        child: TextButton(
+                          onPressed: () async =>
+                              provider.getAddressFromLocation(),
+                          child: Icon(Icons.gps_fixed),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
