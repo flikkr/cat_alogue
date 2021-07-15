@@ -1,7 +1,6 @@
 import 'package:cat_alogue/services/utils/geo.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:location/location.dart';
 
 var locationP = StateProvider.autoDispose<String?>((_) => null);
 var imagePaths = StateProvider.autoDispose<List<String>?>((_) => null);

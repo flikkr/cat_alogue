@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class Navbar extends StatelessWidget with PreferredSizeWidget {
   final String title;
+  final Color? backgroundColor;
 
-  const Navbar({this.title = 'My screen'});
+  const Navbar({
+    this.title = 'My screen',
+    this.backgroundColor = Colors.transparent,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +15,7 @@ class Navbar extends StatelessWidget with PreferredSizeWidget {
       title: Text(title),
       centerTitle: true,
       elevation: 0,
-      backgroundColor: Colors.transparent,
+      backgroundColor: backgroundColor,
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:cat_alogue/models/cat.dart';
 import 'package:cat_alogue/provider/cat_form_provider.dart';
 import 'package:cat_alogue/services/utils/geo.dart';
+import 'package:cat_alogue/widgets/input/image_picker.dart';
 import 'package:cat_alogue/widgets/menu/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -24,68 +25,74 @@ class CatFormPage extends HookWidget {
     var location = useProvider(locationP);
 
     return Scaffold(
-      appBar: Navbar(title: cat == null ? 'New cat' : 'Edit cat'),
+      appBar: Navbar(
+        title: cat == null ? 'New cat' : 'Edit cat',
+        backgroundColor: Colors.blue,
+      ),
       body: Padding(
         padding: StiloEdge.all2,
-        child: Column(
-          children: [
-            FormBuilder(
-              key: _formKey,
-              autovalidateMode: AutovalidateMode.disabled,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FormBuilderTextField(
-                    name: 'name',
-                    initialValue: cat?.name,
-                    decoration: const InputDecoration(
-                      labelText: 'Cat name',
-                      prefixIcon: Icon(Icons.text_fields),
-                    ),
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context),
-                    ]),
+        child: SingleChildScrollView(
+          child: FormBuilder(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.disabled,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FormBuilderTextField(
+                  name: 'name',
+                  initialValue: cat?.name,
+                  decoration: const InputDecoration(
+                    labelText: 'Cat name',
+                    prefixIcon: Icon(Icons.text_fields),
                   ),
-                  StiloSpacing.vert3,
-                  FormBuilderTextField(
-                    name: 'description',
-                    initialValue: cat?.description,
-                    decoration: const InputDecoration(
-                      labelText: 'Description',
-                      prefixIcon: Icon(Icons.description),
-                    ),
-                    obscureText: true,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context),
+                  ]),
+                ),
+                StiloSpacing.vert3,
+                FormBuilderTextField(
+                  name: 'description',
+                  initialValue: cat?.description,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 3,
+                  maxLength: 120,
+                  decoration: const InputDecoration(
+                    labelText: 'Description',
+                    prefixIcon: Icon(Icons.description),
                   ),
-                  StiloSpacing.vert3,
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FormBuilderTextField(
-                          name: 'location',
-                          controller:
-                              TextEditingController(text: location.state),
-                          decoration: const InputDecoration(
-                            labelText: 'Location found',
-                            prefixIcon: Icon(Icons.location_on),
-                          ),
+                ),
+                StiloSpacing.vert3,
+                Row(
+                  children: [
+                    Expanded(
+                      child: FormBuilderTextField(
+                        name: 'location',
+                        controller: TextEditingController(text: location.state),
+                        decoration: const InputDecoration(
+                          labelText: 'Location found',
+                          prefixIcon: Icon(Icons.location_on),
                         ),
                       ),
-                      StiloSpacing.horiz1,
-                      SizedBox(
-                        height: 55,
-                        width: 55,
-                        child: TextButton(
-                          onPressed: () async =>
-                              provider.getAddressFromLocation(),
-                          child: Icon(Icons.gps_fixed),
-                        ),
+                    ),
+                    StiloSpacing.horiz1,
+                    SizedBox(
+                      height: 55,
+                      width: 55,
+                      child: TextButton(
+                        onPressed: () async =>
+                            provider.getAddressFromLocation(),
+                        child: Icon(Icons.gps_fixed),
                       ),
-                    ],
-                  )
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                StiloSpacing.vert3,
+                Text('Photos'),
+                StiloSpacing.vert3,
+                ImagePicker(),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
