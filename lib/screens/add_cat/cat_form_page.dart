@@ -38,6 +38,28 @@ class CatFormPage extends HookWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                StiloSpacing.vert2,
+                Center(
+                  child: ImagePicker(
+                    isCircle: true,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.camera_alt_rounded,
+                          color: Colors.grey,
+                        ),
+                        Text(
+                          'Select picture',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                StiloSpacing.vert3,
                 FormBuilderTextField(
                   name: 'name',
                   initialValue: cat?.name,
@@ -89,7 +111,6 @@ class CatFormPage extends HookWidget {
                 StiloSpacing.vert3,
                 Text('Photos'),
                 StiloSpacing.vert3,
-                ImagePicker(),
               ],
             ),
           ),

@@ -1,0 +1,12 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+
+linter:
+  rules:
+    always_put_required_named_parameters_first: false
+    avoid_classes_with_only_static_members: false
+    prefer_single_quotes: true

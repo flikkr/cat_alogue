@@ -6,16 +6,15 @@ class Cat {
   String? name;
   String? description;
   bool isFavourite;
-  String? profileImgPath;
+  String? profileImgUrl;
   List<MediaItem>? media;
-
 
   Cat({
     this.id,
     this.name,
     this.description,
     this.isFavourite = false,
-    this.profileImgPath,
+    this.profileImgUrl,
     this.media,
   });
 
@@ -25,14 +24,6 @@ class Cat {
       'description': description,
       'isFavourite': isFavourite,
     };
-  }
-
-  static Future<void> create(Cat cat) {
-    return DatabaseService.userDoc.collection(DbPath.cats).add(cat.toMap());
-  }
-
-  static Future<void> delete(Cat cat) {
-    return DatabaseService.userDoc.collection(DbPath.cats).doc(cat.id).delete();
   }
 
   @override

@@ -3,25 +3,37 @@ import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';
 
 class ImagePicker extends StatelessWidget {
-  const ImagePicker({Key? key}) : super(key: key);
+  final bool isCircle;
+  final double? height;
+  final double? width;
+  final Widget? child;
+
+  const ImagePicker({
+    Key? key,
+    this.isCircle = false,
+    this.height,
+    this.width,
+    this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
       borderType: BorderType.RRect,
-      radius: StiloBorderRadius.xl,
+      radius: isCircle ? StiloBorderRadius.full : StiloBorderRadius.xl,
       color: Colors.grey,
       dashPattern: const [8, 5],
       strokeWidth: 2,
       child: SizedBox(
-        height: 100,
-        width: 100,
-        child: InkWell(
-          onTap: () {},
-          child: Center(
-            child: Icon(
-              Icons.camera_alt_rounded,
-              color: Colors.grey,
+        height: height ?? 150,
+        width: width ?? 150,
+        child: Material(
+          clipBehavior: Clip.hardEdge,
+          shape: CircleBorder(),
+          child: InkWell(
+            onTap: () {},
+            child: Center(
+              child: child,
             ),
           ),
         ),

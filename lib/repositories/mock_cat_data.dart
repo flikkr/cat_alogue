@@ -9,19 +9,19 @@ class MockCatData extends ICatRepository {
       Cat(
         name: 'Shifty',
         description: 'A really shifty kitty',
-        profileImgPath: 'assets/img/cat1.jpg',
+        profileImgUrl: 'assets/img/cat1.jpg',
         media: mockImages,
       ),
       Cat(
         name: 'Pinky',
         description: 'A really pinky kitty',
-        profileImgPath: 'assets/img/cat2.jpg',
+        profileImgUrl: 'assets/img/cat2.jpg',
         media: mockImages,
       ),
       Cat(
         name: 'Lola',
         description: 'A fat whiny kitty',
-        profileImgPath: 'assets/img/cat3.jpg',
+        profileImgUrl: 'assets/img/cat3.jpg',
         media: mockImages,
       ),
     ];

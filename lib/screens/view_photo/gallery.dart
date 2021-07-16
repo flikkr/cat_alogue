@@ -11,12 +11,13 @@ class Gallery extends HookWidget {
   final GalleryOptions options;
 
   Gallery(this.options) {
-    currentPageProvider = StateProvider.autoDispose<int>((_) => options.initialIndex!);
+    currentPageProvider =
+        StateProvider.autoDispose<int>((_) => options.initialIndex!);
   }
 
   @override
   Widget build(BuildContext context) {
-    int currentPage = useProvider(currentPageProvider);
+    // int currentPage = useProvider(currentPageProvider);
 
     return PhotoViewGallery.builder(
       scrollPhysics: const BouncingScrollPhysics(),
@@ -29,8 +30,8 @@ class Gallery extends HookWidget {
       },
       itemCount: options.items!.length,
       pageController: options.pageController,
-      loadingBuilder: (context, event) => Center(
-        child: Container(
+      loadingBuilder: (_, ImageChunkEvent? event) => Center(
+        child: SizedBox(
           width: 20.0,
           height: 20.0,
           child: CircularProgressIndicator(
