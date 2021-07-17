@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 var locationP = StateProvider.autoDispose<String?>((_) => null);
-var imagePaths = StateProvider.autoDispose<List<String>?>((_) => null);
+var imagePathP = StateProvider.autoDispose<String?>((_) => null);
 
 var catFormProvider =
     Provider.autoDispose<CatFormProvider>((ref) => CatFormProvider(ref.read));
@@ -15,7 +15,7 @@ class CatFormProvider {
   CatFormProvider(this.read);
 
   Future<void> getAddressFromLocation() async {
-    var loc = await Geo.getLocation();
+    final loc = await Geo.getLocation();
     if (loc != null) {
       final placemark =
           (await placemarkFromCoordinates(loc.latitude!, loc.longitude!)).first;
@@ -25,12 +25,12 @@ class CatFormProvider {
     }
   }
 
-  Future<String?> getProfileImage() async {
+  Future<void> getProfileImage() async {
     final ImagePicker _picker = ImagePicker();
 
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
-    return image?.path;
+    if (image != null) read(imagePathP).state = image.path;
   }
 
   // Future saveCat() {

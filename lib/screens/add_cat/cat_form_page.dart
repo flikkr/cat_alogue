@@ -22,7 +22,8 @@ class CatFormPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     var provider = useProvider(catFormProvider);
-    var location = useProvider(locationP);
+    var location = useProvider(locationP).state;
+    var imagePath = useProvider(imagePathP).state;
 
     return Scaffold(
       appBar: Navbar(
@@ -42,10 +43,12 @@ class CatFormPage extends HookWidget {
                 Center(
                   child: ImagePicker(
                     isCircle: true,
+                    initialImagePath: imagePath,
+                    onTap: () => provider.getProfileImage(),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.camera_alt_rounded,
                           color: Colors.grey,
                         ),
@@ -89,7 +92,7 @@ class CatFormPage extends HookWidget {
                     Expanded(
                       child: FormBuilderTextField(
                         name: 'location',
-                        controller: TextEditingController(text: location.state),
+                        controller: TextEditingController(text: location),
                         decoration: const InputDecoration(
                           labelText: 'Location found',
                           prefixIcon: Icon(Icons.location_on),
@@ -103,14 +106,17 @@ class CatFormPage extends HookWidget {
                       child: TextButton(
                         onPressed: () async =>
                             provider.getAddressFromLocation(),
-                        child: Icon(Icons.gps_fixed),
+                        child: const Icon(Icons.gps_fixed),
                       ),
                     ),
                   ],
                 ),
                 StiloSpacing.vert3,
-                Text('Photos'),
-                StiloSpacing.vert3,
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.save),
+                  label: const Text('Save Cat'),
+                )
               ],
             ),
           ),

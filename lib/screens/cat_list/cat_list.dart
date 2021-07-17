@@ -13,17 +13,14 @@ class CatList extends HookWidget with Surround {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('My cats'),
+        title: const Text('My cats'),
       ),
-      body: Container(
-        child: ListView(
-          children: catList.map((cat) => CatListItem(cat: cat)).toList(),
-        ),
+      body: ListView(
+        children: catList.map((cat) => CatListItem(cat: cat)).toList(),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        icon: Text('😺'),
-        label: Text('Add a cat'),
-        isExtended: true,
+        icon: const Text('😺'),
+        label: const Text('Add a cat'),
         onPressed: () => Navigator.of(context).pushNamed(Routes.add_cat),
       ),
     );
