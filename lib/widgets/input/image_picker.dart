@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cat_alogue/models/media_item/media_item.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';
@@ -10,7 +11,7 @@ class ImagePicker extends StatelessWidget {
   final double? width;
   final Widget? child;
   final Function()? onTap;
-  final String? initialImagePath;
+  final MediaItem? initialImage;
 
   const ImagePicker({
     Key? key,
@@ -19,12 +20,12 @@ class ImagePicker extends StatelessWidget {
     this.width,
     this.child,
     this.onTap,
-    this.initialImagePath,
+    this.initialImage,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return initialImagePath == null
+    return initialImage == null
         ? DottedBorder(
             borderType: BorderType.RRect,
             radius: isCircle ? StiloBorderRadius.full : StiloBorderRadius.xl,
@@ -58,10 +59,7 @@ class ImagePicker extends StatelessWidget {
         shape: const CircleBorder(),
         child: InkWell(
           onTap: onTap,
-          child: Image.file(
-            File(initialImagePath!),
-            fit: BoxFit.cover,
-          ),
+          child: initialImage!.display(),
         ),
       ),
     );

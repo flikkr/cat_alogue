@@ -1,4 +1,4 @@
-import 'package:cat_alogue/models/util/gallery_options.dart';
+import 'package:cat_alogue/models/gallery_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,7 +23,7 @@ class Gallery extends HookWidget {
       scrollPhysics: const BouncingScrollPhysics(),
       builder: (BuildContext context, int index) {
         return PhotoViewGalleryPageOptions(
-          imageProvider: AssetImage(options.items![index].path!),
+          imageProvider: AssetImage(options.items![index].urlPath),
           initialScale: PhotoViewComputedScale.contained,
           heroAttributes: PhotoViewHeroAttributes(tag: options.initialIndex!),
         );

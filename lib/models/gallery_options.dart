@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'media_item.dart';
+import 'media_item/media_item.dart';
 
 class GalleryOptions {
   final Decoration? backgroundDecoration;

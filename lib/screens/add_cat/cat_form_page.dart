@@ -1,12 +1,10 @@
-import 'package:cat_alogue/models/cat.dart';
+import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/provider/cat_form_provider.dart';
-import 'package:cat_alogue/services/utils/geo.dart';
 import 'package:cat_alogue/widgets/input/image_picker.dart';
 import 'package:cat_alogue/widgets/menu/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
 
@@ -21,13 +19,15 @@ class CatFormPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = useProvider(catFormProvider);
-    var location = useProvider(locationP).state;
-    var imagePath = useProvider(imagePathP).state;
+    useEffect(() {
+      context.read(catFormProvider).initState(cat);
+    });
+
+    final _cat = useProvider(catProvider).state;
 
     return Scaffold(
       appBar: Navbar(
-        title: cat == null ? 'New cat' : 'Edit cat',
+        title: _cat.id == null ? 'New cat' : 'Edit cat',
         backgroundColor: Colors.blue,
       ),
       body: Padding(
@@ -43,8 +43,8 @@ class CatFormPage extends HookWidget {
                 Center(
                   child: ImagePicker(
                     isCircle: true,
-                    initialImagePath: imagePath,
-                    onTap: () => provider.getProfileImage(),
+                    initialImage: _cat.profileImg,
+                    onTap: () => context.read(catFormProvider).getProfileImage(),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -92,7 +92,8 @@ class CatFormPage extends HookWidget {
                     Expanded(
                       child: FormBuilderTextField(
                         name: 'location',
-                        controller: TextEditingController(text: location),
+                        controller:
+                            TextEditingController(text: _cat.location?.address),
                         decoration: const InputDecoration(
                           labelText: 'Location found',
                           prefixIcon: Icon(Icons.location_on),
@@ -105,7 +106,7 @@ class CatFormPage extends HookWidget {
                       width: 55,
                       child: TextButton(
                         onPressed: () async =>
-                            provider.getAddressFromLocation(),
+                            context.read(catFormProvider).getAddressFromLocation(),
                         child: const Icon(Icons.gps_fixed),
                       ),
                     ),

@@ -1,3 +1,4 @@
+import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class DbPath {
@@ -7,7 +8,6 @@ abstract class DbPath {
 }
 
 class DatabaseService {
-
   // Firestore instance
   static final _inst = FirebaseFirestore.instance;
   // Document reference of the current logged in user
@@ -16,4 +16,7 @@ class DatabaseService {
   DatabaseService(String uid) {
     userDoc = _inst.collection(DbPath.userColl).doc(uid);
   }
+
+  /// Cat operations
+  // Future<void> createOrUpdateCat(Cat cat) {}
 }

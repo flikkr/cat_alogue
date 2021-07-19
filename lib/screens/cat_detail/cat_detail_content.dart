@@ -1,4 +1,4 @@
-import 'package:cat_alogue/models/cat.dart';
+import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:flutter/material.dart';
 
 class CatDetailContent extends StatelessWidget {
@@ -10,8 +10,7 @@ class CatDetailContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: SliverList(
-        delegate: SliverChildListDelegate([
-        ]),
+        delegate: SliverChildListDelegate([]),
       ),
     );
   }

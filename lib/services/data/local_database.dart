@@ -1,21 +1,30 @@
-// import 'package:sqflite/sqflite.dart';
+import 'dart:convert';
 
-// class LocalDatabase {
-//   static Database db;
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart' as PathProvider;
 
-//   // Init database
-//   static Future<void> init() async {
-//     db = await openDatabase(
-//       'cat-alogue.db',
-//       version: 1,
-//       onCreate: (db, version) async {
-//         await db.transaction((txn) async {
-//           await db.execute('''
-//               CREATE TABLE Cat (id INTEGER PRIMARY KEY, name TEXT, description TEXT);
-//               ''');
-//         });
-//       },
-//       onConfigure: (db) async => await db.execute("PRAGMA foreign_keys = ON"),
-//     );
-//   }
-// }
+class LocalDatabase {
+  static List<String>? avatarPaths;
+
+  static Future<void> init() async {
+    Hive.initFlutter();
+  }
+
+  static Future<List<String>?> loadAvatars(
+    BuildContext context,
+  ) async {
+    if (avatarPaths != null) return avatarPaths;
+
+    final manifestJson =
+        await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
+    final paths = json
+        .decode(manifestJson)
+        .keys
+        .where((String key) => key.startsWith('assets/avatars'))
+        .toList() as List<String>?;
+
+    return avatarPaths = paths;
+  }
+}

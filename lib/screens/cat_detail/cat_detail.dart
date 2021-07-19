@@ -1,5 +1,5 @@
-import 'package:cat_alogue/models/cat.dart';
-import 'package:cat_alogue/models/util/gallery_options.dart';
+import 'package:cat_alogue/models/cat/cat.dart';
+import 'package:cat_alogue/models/gallery_options.dart';
 import 'package:cat_alogue/services/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,7 +13,7 @@ class CatDetail extends HookWidget {
   @override
   Widget build(BuildContext context) {
     // var catProvider = useProvider(catDetailProvider!(cat));
-    var controller = useScrollController();
+    final controller = useScrollController();
 
     return Scaffold(
       body: Stack(
@@ -26,7 +26,7 @@ class CatDetail extends HookWidget {
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
-                  title: AnimatedOpacity(
+                  title: const AnimatedOpacity(
                     duration: Duration(milliseconds: 300),
                     opacity: 1.0,
                     child: Text('Text'),
@@ -90,22 +90,20 @@ class CatDetail extends HookWidget {
                   itemCount: cat.media?.length ?? 0,
                   itemBuilder: (BuildContext context, int index) => Hero(
                     tag: index,
-                    child: Container(
-                      child: Material(
-                        clipBehavior: Clip.antiAlias,
-                        borderRadius: BorderRadius.circular(10),
-                        child: InkWell(
-                          onTap: () => Navigator.of(context).pushNamed(
-                            Routes.gallery_view,
-                            arguments: GalleryOptions(
-                              initialIndex: index,
-                              items: cat.media,
-                            ),
+                    child: Material(
+                      clipBehavior: Clip.antiAlias,
+                      borderRadius: BorderRadius.circular(10),
+                      child: InkWell(
+                        onTap: () => Navigator.of(context).pushNamed(
+                          Routes.gallery_view,
+                          arguments: GalleryOptions(
+                            initialIndex: index,
+                            items: cat.media,
                           ),
-                          child: Image.asset(
-                            cat.media![index].path!,
-                            fit: BoxFit.cover,
-                          ),
+                        ),
+                        child: Image.asset(
+                          cat.media![index].urlPath,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

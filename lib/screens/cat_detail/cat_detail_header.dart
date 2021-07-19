@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:cat_alogue/models/cat.dart';
+import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -47,7 +47,7 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
             opacity: titleOpacity(shrinkOffset),
             child: CircleAvatar(
               maxRadius: 100,
-              backgroundImage: AssetImage(cat.profileImgUrl!),
+              // backgroundImage: AssetImage(cat.profileImgUrl!),
             ),
           ),
         ),

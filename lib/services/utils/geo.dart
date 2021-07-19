@@ -2,7 +2,7 @@ import 'package:location/location.dart';
 
 class Geo {
   static Future<LocationData?> getLocation() async {
-    Location location = new Location();
+    final Location location = Location();
 
     bool serviceEnabled;
     PermissionStatus permissionGranted;
@@ -23,6 +23,6 @@ class Geo {
       }
     }
 
-    return await location.getLocation();
+    return location.getLocation();
   }
 }

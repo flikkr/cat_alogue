@@ -1,4 +1,5 @@
 import 'package:cat_alogue/models/user.dart';
+import 'package:cat_alogue/services/data/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -32,6 +33,7 @@ Future<fb_auth.User?> signInWithGoogle() async {
       final userCredential = await _auth.signInWithCredential(credential);
 
       user = userCredential.user;
+      if (user != null) DatabaseService(user.uid);
     } on fb_auth.FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
         // handle the error here
