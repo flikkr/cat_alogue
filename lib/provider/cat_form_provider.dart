@@ -18,7 +18,7 @@ class CatFormProvider {
   CatFormProvider(this._read);
 
   Future<void> initState(Cat? cat) async {
-    Future.microtask(() => _read(catProvider).state = cat ?? Cat());
+     await Future.microtask(() => _read(catProvider).state = cat ?? Cat());
   }
 
   Future<void> getAddressFromLocation() async {

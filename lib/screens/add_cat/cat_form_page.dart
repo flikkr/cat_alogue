@@ -21,10 +21,11 @@ class CatFormPage extends HookWidget {
   Widget build(BuildContext context) {
     useEffect(() {
       context.read(catFormProvider).initState(cat);
-    });
+    }, []);
 
     final _cat = useProvider(catProvider).state;
 
+    print('test');
     return Scaffold(
       appBar: Navbar(
         title: _cat.id == null ? 'New cat' : 'Edit cat',
@@ -44,7 +45,8 @@ class CatFormPage extends HookWidget {
                   child: ImagePicker(
                     isCircle: true,
                     initialImage: _cat.profileImg,
-                    onTap: () => context.read(catFormProvider).getProfileImage(),
+                    onTap: () =>
+                        context.read(catFormProvider).getProfileImage(),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -105,8 +107,9 @@ class CatFormPage extends HookWidget {
                       height: 55,
                       width: 55,
                       child: TextButton(
-                        onPressed: () async =>
-                            context.read(catFormProvider).getAddressFromLocation(),
+                        onPressed: () async => context
+                            .read(catFormProvider)
+                            .getAddressFromLocation(),
                         child: const Icon(Icons.gps_fixed),
                       ),
                     ),
