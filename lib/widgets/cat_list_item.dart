@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 class CatListItem extends StatelessWidget {
   final Cat cat;
 
-  CatListItem({required this.cat});
+  const CatListItem({required this.cat});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(cat.name!),
-        subtitle: Text(cat.description!),
+        title: Text(cat.name),
+        subtitle: cat.description != null ? Text(cat.description!) : null,
         onTap: () => Navigator.of(context).pushNamed(
           Routes.cat_detail,
           arguments: cat,

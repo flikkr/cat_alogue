@@ -25,7 +25,6 @@ class CatFormPage extends HookWidget {
 
     final _cat = useProvider(catProvider).state;
 
-    print('test');
     return Scaffold(
       appBar: Navbar(
         title: _cat.id == null ? 'New cat' : 'Edit cat',
@@ -117,7 +116,11 @@ class CatFormPage extends HookWidget {
                 ),
                 StiloSpacing.vert3,
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () async {
+                    print('object');
+                    // await context.read(catFormProvider).saveCat();
+                    // Navigator.of(context).pop();
+                  },
                   icon: const Icon(Icons.save),
                   label: const Text('Save Cat'),
                 )

@@ -12,9 +12,7 @@ class LocalDatabase {
     Hive.initFlutter();
   }
 
-  static Future<List<String>?> loadAvatars(
-    BuildContext context,
-  ) async {
+  static Future<List<String>?> loadAvatars(BuildContext context) async {
     if (avatarPaths != null) return avatarPaths;
 
     final manifestJson =

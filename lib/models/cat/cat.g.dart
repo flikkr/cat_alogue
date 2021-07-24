@@ -9,7 +9,7 @@ part of 'cat.dart';
 _$_Cat _$_$_CatFromJson(Map<String, dynamic> json) {
   return _$_Cat(
     id: json['id'] as String?,
-    name: json['name'] as String?,
+    name: json['name'] as String? ?? '',
     description: json['description'] as String?,
     isFavourite: json['isFavourite'] as bool? ?? false,
     profileImg: json['profileImg'] == null

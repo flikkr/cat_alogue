@@ -22,7 +22,7 @@ class _$CatTearOff {
 
   _Cat call(
       {String? id,
-      String? name,
+      String name = '',
       String? description,
       bool isFavourite = false,
       MediaItem? profileImg,
@@ -50,7 +50,7 @@ const $Cat = _$CatTearOff();
 /// @nodoc
 mixin _$Cat {
   String? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   bool get isFavourite => throw _privateConstructorUsedError;
   MediaItem? get profileImg => throw _privateConstructorUsedError;
@@ -68,7 +68,7 @@ abstract class $CatCopyWith<$Res> {
       _$CatCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      String? name,
+      String name,
       String? description,
       bool isFavourite,
       MediaItem? profileImg,
@@ -102,7 +102,7 @@ class _$CatCopyWithImpl<$Res> implements $CatCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ abstract class _$CatCopyWith<$Res> implements $CatCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
-      String? name,
+      String name,
       String? description,
       bool isFavourite,
       MediaItem? profileImg,
@@ -169,7 +169,7 @@ class __$CatCopyWithImpl<$Res> extends _$CatCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -199,7 +199,7 @@ class __$CatCopyWithImpl<$Res> extends _$CatCopyWithImpl<$Res>
 class _$_Cat implements _Cat {
   _$_Cat(
       {this.id,
-      this.name,
+      this.name = '',
       this.description,
       this.isFavourite = false,
       this.profileImg,
@@ -210,8 +210,9 @@ class _$_Cat implements _Cat {
 
   @override
   final String? id;
+  @JsonKey(defaultValue: '')
   @override
-  final String? name;
+  final String name;
   @override
   final String? description;
   @JsonKey(defaultValue: false)
@@ -278,7 +279,7 @@ class _$_Cat implements _Cat {
 abstract class _Cat implements Cat {
   factory _Cat(
       {String? id,
-      String? name,
+      String name,
       String? description,
       bool isFavourite,
       MediaItem? profileImg,
@@ -290,7 +291,7 @@ abstract class _Cat implements Cat {
   @override
   String? get id => throw _privateConstructorUsedError;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @override
   String? get description => throw _privateConstructorUsedError;
   @override

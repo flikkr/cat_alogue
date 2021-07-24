@@ -33,7 +33,9 @@ Future<fb_auth.User?> signInWithGoogle() async {
       final userCredential = await _auth.signInWithCredential(credential);
 
       user = userCredential.user;
-      if (user != null) DatabaseService(user.uid);
+      if (user != null) {
+        DatabaseService(user.uid);
+      }
     } on fb_auth.FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
         // handle the error here
