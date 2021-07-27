@@ -88,7 +88,7 @@ class CatFormProvider {
         final fb_storage.FirebaseStorage storage =
             fb_storage.FirebaseStorage.instance;
         final snapshot = await storage
-            .ref('catProfile/')
+            .ref('cats/${cat.id}')
             .putFile(File(cat.profileImg!.urlPath));
         final url = await snapshot.ref.getDownloadURL();
         cat = cat.copyWith(
@@ -99,8 +99,8 @@ class CatFormProvider {
           ),
         );
       }
-
-      DatabaseService.userDoc
+      print(cat.toJson());
+      await DatabaseService.userDoc
           .collection(DbPath.cats)
           .doc(cat.id)
           .set(cat.toJson());

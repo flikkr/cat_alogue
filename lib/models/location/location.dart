@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'location.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Location {
   final Coordinates? coord;
   final String? address;

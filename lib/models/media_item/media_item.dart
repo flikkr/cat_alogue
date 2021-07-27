@@ -28,7 +28,7 @@ enum MediaSource {
   app,
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class MediaItem {
   /// File path or url of the resource file
   final String urlPath;

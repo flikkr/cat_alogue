@@ -13,6 +13,7 @@ part 'cat.freezed.dart';
 part 'cat.g.dart';
 
 @freezed
+@JsonSerializable(explicitToJson: true)
 class Cat with _$Cat {
   factory Cat({
     String? id,

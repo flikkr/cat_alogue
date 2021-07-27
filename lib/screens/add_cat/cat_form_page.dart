@@ -23,11 +23,11 @@ class CatFormPage extends HookWidget {
       context.read(catFormProvider).initState(cat);
     }, []);
 
-    final _cat = useProvider(catProvider).state;
+    var _cat = useProvider(catProvider);
 
     return Scaffold(
       appBar: Navbar(
-        title: _cat.id == null ? 'New cat' : 'Edit cat',
+        title: _cat.state.id == null ? 'New cat' : 'Edit cat',
         backgroundColor: Colors.blue,
       ),
       body: Padding(
@@ -43,7 +43,7 @@ class CatFormPage extends HookWidget {
                 Center(
                   child: ImagePicker(
                     isCircle: true,
-                    initialImage: _cat.profileImg,
+                    initialImage: _cat.state.profileImg,
                     onTap: () =>
                         context.read(catFormProvider).getProfileImage(),
                     child: Column(
@@ -67,6 +67,8 @@ class CatFormPage extends HookWidget {
                 FormBuilderTextField(
                   name: 'name',
                   initialValue: cat?.name,
+                  onChanged: (value) =>
+                      _cat.state = _cat.state.copyWith(name: value ?? ''),
                   decoration: const InputDecoration(
                     labelText: 'Cat name',
                     prefixIcon: Icon(Icons.text_fields),
@@ -94,7 +96,7 @@ class CatFormPage extends HookWidget {
                       child: FormBuilderTextField(
                         name: 'location',
                         controller:
-                            TextEditingController(text: _cat.location?.address),
+                            TextEditingController(text: _cat.state.location?.address),
                         decoration: const InputDecoration(
                           labelText: 'Location found',
                           prefixIcon: Icon(Icons.location_on),
@@ -117,9 +119,8 @@ class CatFormPage extends HookWidget {
                 StiloSpacing.vert3,
                 ElevatedButton.icon(
                   onPressed: () async {
-                    print('object');
-                    // await context.read(catFormProvider).saveCat();
-                    // Navigator.of(context).pop();
+                    await context.read(catFormProvider).saveCat();
+                    Navigator.of(context).pop();
                   },
                   icon: const Icon(Icons.save),
                   label: const Text('Save Cat'),
