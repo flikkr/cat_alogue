@@ -9,6 +9,7 @@ import 'package:cat_alogue/screens/debug/sample_animations.dart';
 import 'package:cat_alogue/screens/view_photo/gallery.dart';
 import 'package:flutter/material.dart';
 
+// ignore_for_file: constant_identifier_names
 abstract class Routes {
   static const String base = '/';
   static const String cat_list = '/cats';
@@ -61,13 +62,13 @@ class RouteGenerator {
 
   static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: '/error'),
+      settings: const RouteSettings(name: '/error'),
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Error'),
+            title: const Text('Error'),
           ),
-          body: Center(
+          body: const Center(
             child: Text('ERROR'),
           ),
         );

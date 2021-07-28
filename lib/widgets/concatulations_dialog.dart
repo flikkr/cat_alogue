@@ -24,17 +24,17 @@ class ConcatulationsDialog extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
             textAlign: TextAlign.center,
           ),
-          Container(
+          SizedBox(
             height: 300,
             child: Lottie.network(
               'https://assets1.lottiefiles.com/packages/lf20_daZky5.json',
             ),
           ),
-          Container(
+          SizedBox(
             width: double.maxFinite,
             child: ElevatedButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Dismiss'),
+              child: const Text('Dismiss'),
             ),
           )
         ],

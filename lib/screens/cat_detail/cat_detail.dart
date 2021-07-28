@@ -8,7 +8,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 class CatDetail extends HookWidget {
   final Cat cat;
 
-  CatDetail(this.cat);
+  const CatDetail(this.cat);
 
   @override
   Widget build(BuildContext context) {

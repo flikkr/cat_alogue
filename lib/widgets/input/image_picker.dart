@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cat_alogue/models/media_item/media_item.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';

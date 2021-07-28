@@ -1,15 +1,11 @@
 import 'package:cat_alogue/services/auth/auth.dart';
-import 'package:cat_alogue/widgets/loading/cat_loader.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stilo/stilo.dart';
 
 class SignInScreen extends StatelessWidget {
-  final _formKey = GlobalKey<FormBuilderState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

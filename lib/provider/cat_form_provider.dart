@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:cat_alogue/models/cat/cat.dart';
-import 'package:cat_alogue/models/location/location.dart' as Loc;
+import 'package:cat_alogue/models/location/location.dart' as location;
 import 'package:cat_alogue/models/media_item/media_item.dart';
 import 'package:cat_alogue/services/data/database_service.dart';
 import 'package:cat_alogue/services/data/local_database.dart';
@@ -35,7 +35,7 @@ class CatFormProvider {
           (await placemarkFromCoordinates(loc.latitude!, loc.longitude!)).first;
 
       _read(catProvider).state = _read(catProvider).state.copyWith(
-            location: Loc.Location(
+            location: location.Location(
               address:
                   '${placemark.street}, ${placemark.administrativeArea} ${placemark.country}',
             ),
@@ -46,7 +46,10 @@ class CatFormProvider {
   Future<void> getProfileImage() async {
     final ImagePicker _picker = ImagePicker();
 
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 50,
+    );
 
     if (image != null) {
       _read(catProvider).state = _read(catProvider).state.copyWith(
@@ -99,7 +102,7 @@ class CatFormProvider {
           ),
         );
       }
-      print(cat.toJson());
+      
       await DatabaseService.userDoc
           .collection(DbPath.cats)
           .doc(cat.id)

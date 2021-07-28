@@ -29,7 +29,7 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
           ),
         ),
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Colors.transparent, Colors.black54],
               stops: [0.5, 1.0],
@@ -45,7 +45,7 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
           bottom: -100 + shrinkOffset,
           child: Opacity(
             opacity: titleOpacity(shrinkOffset),
-            child: CircleAvatar(
+            child: const CircleAvatar(
               maxRadius: 100,
               // backgroundImage: AssetImage(cat.profileImgUrl!),
             ),
@@ -59,7 +59,7 @@ class CatDetailHeader implements SliverPersistentHeaderDelegate {
     // simple formula: fade out text as soon as shrinkOffset > 0
     // return 1.0 - max(0.0, shrinkOffset) / maxExtent;
     // more complex formula: starts fading out text when shrinkOffset > minExtent
-    return 1.0 - max(0.0, (shrinkOffset - minExtent)) / (maxExtent - minExtent);
+    return 1.0 - max(0.0, shrinkOffset - minExtent) / (maxExtent - minExtent);
   }
 
   @override

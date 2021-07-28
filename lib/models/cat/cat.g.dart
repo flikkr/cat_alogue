@@ -29,7 +29,7 @@ Map<String, dynamic> _$_$_CatToJson(_$_Cat instance) => <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
       'isFavourite': instance.isFavourite,
-      'profileImg': instance.profileImg,
-      'location': instance.location,
-      'media': instance.media,
+      'profileImg': instance.profileImg?.toJson(),
+      'location': instance.location?.toJson(),
+      'media': instance.media?.map((e) => e.toJson()).toList(),
     };

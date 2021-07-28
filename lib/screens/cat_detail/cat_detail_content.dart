@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 class CatDetailContent extends StatelessWidget {
   final Cat cat;
 
-  CatDetailContent(this.cat);
+  const CatDetailContent(this.cat);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SliverList(
-        delegate: SliverChildListDelegate([]),
-      ),
+    return SliverList(
+      delegate: SliverChildListDelegate([]),
     );
   }
 }

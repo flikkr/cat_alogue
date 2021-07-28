@@ -6,7 +6,7 @@ class CatLoader extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller =
-        useAnimationController(duration: Duration(milliseconds: 1000));
+        useAnimationController(duration: const Duration(milliseconds: 1000));
 
     return Center(
       child: Lottie.asset(

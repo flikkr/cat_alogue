@@ -6,11 +6,11 @@ class DebugScreen extends StatelessWidget with Surround {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Debug screen'),
+        title: const Text('Debug screen'),
       ),
       body: ElevatedButton(
         onPressed: () => _toggleDialog(context),
-        child: Text('Press me!'),
+        child: const Text('Press me!'),
       ),
     );
   }

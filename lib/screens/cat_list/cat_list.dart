@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class CatList extends HookWidget with Surround {
   @override
   Widget build(BuildContext context) {
-    var catList = useProvider(catProvider).state;
+    final catList = useProvider(catProvider).state;
 
     return Scaffold(
       appBar: AppBar(

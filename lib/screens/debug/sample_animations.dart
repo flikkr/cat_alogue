@@ -6,7 +6,7 @@ class SampleAnimations extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sample animations'),
+        title: const Text('Sample animations'),
       ),
       body: ListView(
         children: [

@@ -15,12 +15,12 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text('Animations'),
+            title: const Text('Animations'),
             onTap: () =>
                 Navigator.of(context).pushNamed(Routes.sample_animations),
           ),
           ListTile(
-            title: Text('Debug'),
+            title: const Text('Debug'),
             onTap: () => Navigator.of(context).pushNamed(Routes.debug_screen),
           ),
           Expanded(

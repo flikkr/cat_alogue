@@ -23,7 +23,7 @@ class CatFormPage extends HookWidget {
       context.read(catFormProvider).initState(cat);
     }, []);
 
-    var _cat = useProvider(catProvider);
+    final _cat = useProvider(catProvider);
 
     return Scaffold(
       appBar: Navbar(
