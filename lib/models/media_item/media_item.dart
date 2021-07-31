@@ -64,18 +64,34 @@ class MediaItem {
   //   );
   // }
 
-  Widget? display() {
+  Widget? display({
+    double width = 100,
+    double height = 100,
+    BoxFit fit = BoxFit.cover,
+  }) {
     if (type == MediaType.image) {
+      ImageProvider imageProvider;
+
       switch (source) {
         case MediaSource.app:
-          return Image.asset(urlPath, fit: BoxFit.cover);
+          imageProvider = AssetImage(urlPath);
+          break;
         case MediaSource.local:
-          return Image.file(File(urlPath), fit: BoxFit.cover);
+          imageProvider = FileImage(File(urlPath));
+          break;
         case MediaSource.network:
-          return Image.network(urlPath, fit: BoxFit.cover);
+          imageProvider = NetworkImage(urlPath);
+          break;
         default:
           return null;
       }
+
+      return Image(
+        image: imageProvider,
+        fit: fit,
+        width: width,
+        height: height,
+      );
     } else {
       //TODO: Implement video playback
       return Container();

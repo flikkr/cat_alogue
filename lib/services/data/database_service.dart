@@ -1,3 +1,4 @@
+import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class DbPath {
@@ -18,4 +19,9 @@ class DatabaseService {
 
   /// Cat operations
   // Future<void> createOrUpdateCat(Cat cat) {}
+
+  static Future<List<Cat>?> getCats({String? searchQuery}) async {
+    final result = await userDoc.collection(DbPath.cats).limit(5).get();
+    return result.docs.map((e) => Cat.fromJson(e.data())).toList();
+  }
 }
