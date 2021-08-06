@@ -16,6 +16,7 @@ class CatDetail extends HookWidget {
     final controller = useScrollController();
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(onPressed: onPressed, label: label),
       body: Stack(
         children: [
           CustomScrollView(
@@ -31,10 +32,7 @@ class CatDetail extends HookWidget {
                     opacity: 1.0,
                     child: Text('Text'),
                   ),
-                  background: Image.network(
-                    'https://picsum.photos/200/300',
-                    fit: BoxFit.cover,
-                  ),
+                  background: cat.profileImg?.display(),
                 ),
                 // flexibleSpace: Stack(
                 //   fit: StackFit.expand,
@@ -87,7 +85,8 @@ class CatDetail extends HookWidget {
                 padding: const EdgeInsets.all(4),
                 sliver: SliverStaggeredGrid.countBuilder(
                   crossAxisCount: 4,
-                  itemCount: cat.media?.length ?? 0,
+                  // itemCount: cat.media?.length ?? 0,
+                  itemCount: 10,
                   itemBuilder: (BuildContext context, int index) => Hero(
                     tag: index,
                     child: Material(
