@@ -16,7 +16,7 @@ class CatDetail extends HookWidget {
     final controller = useScrollController();
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(onPressed: onPressed, label: label),
+      // floatingActionButton: FloatingActionButton.extended(onPressed: onPressed, label: label),
       body: Stack(
         children: [
           CustomScrollView(

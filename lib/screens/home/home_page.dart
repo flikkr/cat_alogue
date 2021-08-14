@@ -1,19 +1,12 @@
+import 'package:cat_alogue/screens/home/infinite_cat_list.dart';
 import 'package:cat_alogue/services/utils/route_generator.dart';
-import 'package:cat_alogue/widgets/cat_list_item.dart';
-import 'package:cat_alogue/widgets/list/cat_item.dart';
-import 'package:cat_alogue/widgets/loading/cat_loader.dart';
 import 'package:cat_alogue/widgets/menu/app_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
-import 'package:cat_alogue/provider/home_page_provider.dart';
 
-class HomePage extends HookWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final catList = useProvider(catListFutureProvider);
-
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),
       drawer: AppDrawer(),
@@ -23,27 +16,7 @@ class HomePage extends HookWidget {
       ),
       body: Container(
         padding: StiloEdge.all2,
-        child: Center(
-          child: catList.when(
-            data: (cats) {
-              if (cats == null || cats.isEmpty) {
-                return const Text('Nothing');
-              }
-              return ListView(
-                children: [
-                  ElevatedButton(
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed(Routes.cat_list),
-                    child: const Text('View my cats'),
-                  ),
-                  ...cats.map((cat) => CatItem(cat: cat)).toList(),
-                ],
-              );
-            },
-            loading: () => CatLoader(),
-            error: (error, stackTrace) => Container(),
-          ),
-        ),
+        child: const Center(child: InfiniteCatList()),
       ),
     );
   }

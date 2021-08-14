@@ -35,7 +35,7 @@ dependencies:
   font_awesome_flutter: ^9.1.0
   dotted_border: ^2.0.0
   bot_toast: ^4.0.1
-  # timeline_tile: ^2.0.0
+  timeline_tile: ^2.0.0
 
   # State Management
   hooks_riverpod: ^0.14.0+4
@@ -73,6 +73,7 @@ dev_dependencies:
     sdk: flutter
 
   # Util
+  flutter_gen_runner:
   build_runner: ^2.0.5
   freezed:
   json_serializable:
@@ -85,3 +86,4 @@ flutter:
     - assets/lottie/
     - assets/img/
     - assets/avatars/
+    - assets/info/

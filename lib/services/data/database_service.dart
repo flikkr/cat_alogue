@@ -16,12 +16,4 @@ class DatabaseService {
   DatabaseService(String uid) {
     userDoc = _inst.collection(DbPath.userColl).doc(uid);
   }
-
-  /// Cat operations
-  // Future<void> createOrUpdateCat(Cat cat) {}
-
-  static Future<List<Cat>?> getCats({String? searchQuery}) async {
-    final result = await userDoc.collection(DbPath.cats).limit(5).get();
-    return result.docs.map((e) => Cat.fromJson(e.data())).toList();
-  }
 }

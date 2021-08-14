@@ -3,7 +3,6 @@ import 'package:cat_alogue/models/gallery_options.dart';
 import 'package:cat_alogue/screens/add_cat/cat_form_page.dart';
 import 'package:cat_alogue/screens/auth/sign_in_screen.dart';
 import 'package:cat_alogue/screens/cat_detail/cat_detail.dart';
-import 'package:cat_alogue/screens/cat_list/cat_list.dart';
 import 'package:cat_alogue/screens/debug/debug_screen.dart';
 import 'package:cat_alogue/screens/debug/sample_animations.dart';
 import 'package:cat_alogue/screens/view_photo/gallery.dart';
@@ -28,8 +27,6 @@ class RouteGenerator {
     switch (settings.name) {
       case Routes.base:
         return _format(Routes.base, SignInScreen());
-      case Routes.cat_list:
-        return _format(Routes.cat_list, CatList());
       case Routes.cat_detail:
         return args is Cat
             ? _format(Routes.cat_detail, CatDetail(args))

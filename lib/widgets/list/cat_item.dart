@@ -25,6 +25,7 @@ class CatItem extends StatelessWidget {
               cat.profileImg?.display(height: 70, width: 70) ?? Container(),
               StiloSpacing.all2,
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     cat.name,
