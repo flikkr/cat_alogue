@@ -1,5 +1,6 @@
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/provider/cat_form_provider.dart';
+import 'package:cat_alogue/services/utils/surround.dart';
 import 'package:cat_alogue/widgets/input/image_picker.dart';
 import 'package:cat_alogue/widgets/menu/navbar.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
 
-class CatFormPage extends HookWidget {
+class CatFormPage extends HookWidget with Surround {
   final Cat? cat;
   final _formKey = GlobalKey<FormState>();
 
@@ -95,8 +96,8 @@ class CatFormPage extends HookWidget {
                     Expanded(
                       child: FormBuilderTextField(
                         name: 'location',
-                        controller:
-                            TextEditingController(text: _cat.state.location?.address),
+                        controller: TextEditingController(
+                            text: _cat.state.location?.address),
                         decoration: const InputDecoration(
                           labelText: 'Location found',
                           prefixIcon: Icon(Icons.location_on),
@@ -121,6 +122,7 @@ class CatFormPage extends HookWidget {
                   onPressed: () async {
                     await context.read(catFormProvider).saveCat();
                     Navigator.of(context).pop();
+                    if (cat?.id == null) showConcatulationsDialog(context);
                   },
                   icon: const Icon(Icons.save),
                   label: const Text('Save Cat'),
