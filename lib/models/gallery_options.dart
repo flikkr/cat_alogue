@@ -8,7 +8,7 @@ class GalleryOptions {
   final dynamic maxScale;
   final int? initialIndex;
   final PageController pageController;
-  final List<MediaItem>? items;
+  final List<MediaItem> items;
   final Axis scrollDirection;
 
   GalleryOptions({

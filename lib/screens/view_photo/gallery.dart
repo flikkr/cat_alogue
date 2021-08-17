@@ -23,12 +23,12 @@ class Gallery extends HookWidget {
       scrollPhysics: const BouncingScrollPhysics(),
       builder: (BuildContext context, int index) {
         return PhotoViewGalleryPageOptions(
-          imageProvider: AssetImage(options.items![index].urlPath),
+          imageProvider: AssetImage(options.items[index].urlPath),
           initialScale: PhotoViewComputedScale.contained,
           heroAttributes: PhotoViewHeroAttributes(tag: options.initialIndex!),
         );
       },
-      itemCount: options.items!.length,
+      itemCount: options.items.length,
       pageController: options.pageController,
       loadingBuilder: (_, ImageChunkEvent? event) => Center(
         child: SizedBox(

@@ -20,9 +20,7 @@ class InfiniteCatList extends HookWidget {
     return PagedListView(
       pagingController: catPaginator.controller,
       builderDelegate: PagedChildBuilderDelegate<Cat>(
-        itemBuilder: (context, Cat item, index) => CatItem(
-          cat: item,
-        ),
+        itemBuilder: (context, Cat item, index) => CatItem(cat: item),
       ),
     );
 
