@@ -1,4 +1,3 @@
-import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class DbPath {

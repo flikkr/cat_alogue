@@ -6,6 +6,7 @@ import 'package:cat_alogue/widgets/menu/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
 
@@ -97,7 +98,8 @@ class CatFormPage extends HookWidget with Surround {
                       child: FormBuilderTextField(
                         name: 'location',
                         controller: TextEditingController(
-                            text: _cat.state.location?.address),
+                          text: _cat.state.location?.address,
+                        ),
                         decoration: const InputDecoration(
                           labelText: 'Location found',
                           prefixIcon: Icon(Icons.location_on),
@@ -121,6 +123,7 @@ class CatFormPage extends HookWidget with Surround {
                 ElevatedButton.icon(
                   onPressed: () async {
                     await context.read(catFormProvider).saveCat();
+
                     Navigator.of(context).pop();
                     if (cat?.id == null) showConcatulationsDialog(context);
                   },

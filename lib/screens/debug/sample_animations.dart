@@ -11,15 +11,20 @@ class SampleAnimations extends StatelessWidget {
       body: ListView(
         children: [
           Lottie.network(
-              'https://assets1.lottiefiles.com/packages/lf20_daZky5.json'),
+            'https://assets1.lottiefiles.com/packages/lf20_daZky5.json'
+          ),
           Lottie.network(
-              'https://assets1.lottiefiles.com/packages/lf20_F8lz4p.json'),
+            'https://assets1.lottiefiles.com/packages/lf20_F8lz4p.json',
+          ),
           Lottie.network(
-              'https://assets1.lottiefiles.com/packages/lf20_rYjLry.json'),
+            'https://assets1.lottiefiles.com/packages/lf20_rYjLry.json',
+          ),
           Lottie.network(
-              'https://assets1.lottiefiles.com/packages/lf20_0FQ4S0.json'),
+            'https://assets1.lottiefiles.com/packages/lf20_0FQ4S0.json',
+          ),
           Lottie.network(
-              'https://assets1.lottiefiles.com/packages/lf20_H3UrCA.json'),
+            'https://assets1.lottiefiles.com/packages/lf20_H3UrCA.json',
+          ),
         ],
       ),
     );

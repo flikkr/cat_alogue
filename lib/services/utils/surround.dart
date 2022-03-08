@@ -1,7 +1,6 @@
 import 'package:cat_alogue/widgets/concatulations_dialog.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:stilo/stilo.dart';
 import 'package:flutter/material.dart';
+import 'package:stilo/stilo.dart';
 
 mixin Surround {
   void showConcatulationsDialog(BuildContext context) {

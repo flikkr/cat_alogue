@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:camera/camera.dart';
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/models/location/location.dart' as location;
 import 'package:cat_alogue/models/media_item/media_item.dart';
@@ -8,11 +7,10 @@ import 'package:cat_alogue/services/data/database_service.dart';
 import 'package:cat_alogue/services/data/local_database.dart';
 import 'package:cat_alogue/services/utils/geo.dart';
 import 'package:cat_alogue/services/utils/helper.dart';
+import 'package:firebase_storage/firebase_storage.dart' as fb_storage;
 import 'package:geocoding/geocoding.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart' as fb_storage;
-import 'package:uuid/uuid.dart';
 
 var catProvider = StateProvider.autoDispose<Cat>((_) => Cat());
 
@@ -62,53 +60,5 @@ class CatFormProvider {
     }
   }
 
-  Future saveCat() async {
-    var cat = _read(catProvider).state;
-
-    // Check name not empty
-    if (cat.name == '') {
-      throw fb_storage.FirebaseException(
-          plugin: 'Firestore',
-          message: 'Cat must have a name before saving to firestore');
-    }
-    // Choose a random avatar if no image is provided
-    if (cat.profileImg == null) {
-      final avatars = LocalDatabase.avatarPaths;
-      final profileImg = MediaItem(
-        urlPath: avatars![Helper.randBetween(0, avatars.length)],
-        type: MediaType.image,
-        source: MediaSource.app,
-      );
-      cat = cat.copyWith(profileImg: profileImg);
-    }
-    // Assign an id if the cat is new
-    if (cat.id == null) {
-      cat = cat.copyWith(id: const Uuid().v4());
-    }
-
-    try {
-      if (cat.profileImg?.source == MediaSource.local) {
-        final fb_storage.FirebaseStorage storage =
-            fb_storage.FirebaseStorage.instance;
-        final snapshot = await storage
-            .ref('cats/${cat.id}')
-            .putFile(File(cat.profileImg!.urlPath));
-        final url = await snapshot.ref.getDownloadURL();
-        cat = cat.copyWith(
-          profileImg: MediaItem(
-            urlPath: url,
-            type: MediaType.image,
-            source: MediaSource.network,
-          ),
-        );
-      }
-      
-      await DatabaseService.userDoc
-          .collection(DbPath.cats)
-          .doc(cat.id)
-          .set(cat.toJson());
-    } catch (e) {
-      print(e);
-    }
-  }
+  Future<void> saveCat() async => _read(catProvider).state.save();
 }

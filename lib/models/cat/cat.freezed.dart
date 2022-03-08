@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'cat.dart';
 
@@ -196,7 +197,7 @@ class __$CatCopyWithImpl<$Res> extends _$CatCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Cat implements _Cat {
+class _$_Cat extends _Cat {
   _$_Cat(
       {this.id,
       this.name = '',
@@ -204,9 +205,10 @@ class _$_Cat implements _Cat {
       this.isFavourite = false,
       this.profileImg,
       this.location,
-      this.media});
+      this.media})
+      : super._();
 
-  factory _$_Cat.fromJson(Map<String, dynamic> json) => _$_$_CatFromJson(json);
+  factory _$_Cat.fromJson(Map<String, dynamic> json) => _$$_CatFromJson(json);
 
   @override
   final String? id;
@@ -272,11 +274,11 @@ class _$_Cat implements _Cat {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CatToJson(this);
+    return _$$_CatToJson(this);
   }
 }
 
-abstract class _Cat implements Cat {
+abstract class _Cat extends Cat {
   factory _Cat(
       {String? id,
       String name,
@@ -285,6 +287,7 @@ abstract class _Cat implements Cat {
       MediaItem? profileImg,
       Location? location,
       List<MediaItem>? media}) = _$_Cat;
+  _Cat._() : super._();
 
   factory _Cat.fromJson(Map<String, dynamic> json) = _$_Cat.fromJson;
 

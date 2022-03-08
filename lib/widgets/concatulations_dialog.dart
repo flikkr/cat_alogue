@@ -1,3 +1,4 @@
+import 'package:cat_alogue/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -26,9 +27,7 @@ class ConcatulationsDialog extends StatelessWidget {
           ),
           SizedBox(
             height: 300,
-            child: Lottie.network(
-              'https://assets1.lottiefiles.com/packages/lf20_daZky5.json',
-            ),
+            child: Lottie.asset(Assets.lottie.catCelebrate),
           ),
           SizedBox(
             width: double.maxFinite,

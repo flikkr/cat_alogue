@@ -1,6 +1,5 @@
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/repositories/cat/cat_repository.dart';
-import 'package:cat_alogue/services/data/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -25,13 +24,19 @@ class CatListPaginator extends ChangeNotifier {
   }
 
   Future<void> paginationFetchNext(int pageKey) async {
-    final cats = await _repo.getNextList();
-    if (cats.length < _pageSize) {
-      controller.appendLastPage(cats);
-    } else {
-      final nextPageKey = pageKey + cats.length;
-      controller.appendPage(cats, nextPageKey);
+    try {
+      final cats = await _repo.getCatList();
+
+      if (cats.length < _pageSize) {
+        controller.appendLastPage(cats);
+      } else {
+        final nextPageKey = pageKey + cats.length;
+        controller.appendPage(cats, nextPageKey);
+      }
+    } catch (e) {
+      
     }
+
     notifyListeners();
   }
 }

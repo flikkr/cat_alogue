@@ -1,5 +1,5 @@
 import 'package:cat_alogue/services/auth/auth.dart';
-import 'package:cat_alogue/services/utils/route_generator.dart';
+import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -9,6 +9,7 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           DrawerHeader(
+            // ignore: use_named_constants
             padding: const EdgeInsets.all(0),
             child: Container(
               color: Colors.blue,

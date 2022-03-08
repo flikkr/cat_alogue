@@ -1,5 +1,5 @@
-import 'package:cat_alogue/screens/home/infinite_cat_list.dart';
-import 'package:cat_alogue/services/utils/route_generator.dart';
+import 'package:cat_alogue/screens/home/cat_list.dart';
+import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:cat_alogue/widgets/menu/app_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';

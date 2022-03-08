@@ -5,24 +5,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CatRepository {
   final user = DatabaseService.userDoc;
   static QueryDocumentSnapshot? lastSnapshot;
+  
+  Future<List<Cat>> getCatList({int limit = 10}) async {
+    QuerySnapshot<Map<String, dynamic>> queryResult;
 
-  Future<List<Cat>> getInitialList({int limit = 10}) async {
-    final result = await user.collection(DbPath.cats).limit(limit).get();
-    lastSnapshot = result.docs.last;
-    return result.docs.map((e) => Cat.fromJson(e.data())).toList();
-  }
-
-  Future<List<Cat>> getNextList({int limit = 10}) async {
     if (lastSnapshot == null) {
-      return getInitialList(limit: limit);
+      queryResult = await user.collection(DbPath.cats).limit(limit).get();
+    } else {
+      queryResult = await user
+          .collection(DbPath.cats)
+          .limit(limit)
+          .startAfterDocument(lastSnapshot!)
+          .get();
     }
 
-    final result = await user
-        .collection(DbPath.cats)
-        .limit(limit)
-        .startAfterDocument(lastSnapshot!)
-        .get();
-    lastSnapshot = result.docs.last;
-    return result.docs.map((e) => Cat.fromJson(e.data())).toList();
+    lastSnapshot = queryResult.docs.last;
+    return queryResult.docs.map((e) => Cat.fromJson(e.data())).toList();
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class LocalDatabase {
@@ -14,7 +13,7 @@ class LocalDatabase {
   static Future<List<String>?> loadAvatars(BuildContext context) async {
     if (avatarPaths != null) return avatarPaths;
 
-    final manifestJson =
+    String manifestJson =
         await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
     final paths = json
         .decode(manifestJson)

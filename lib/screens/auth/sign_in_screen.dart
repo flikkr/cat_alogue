@@ -1,3 +1,4 @@
+import 'package:cat_alogue/gen/assets.gen.dart';
 import 'package:cat_alogue/services/auth/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
@@ -23,8 +24,9 @@ class SignInScreen extends StatelessWidget {
                   '😺-alogue',
                   style: Theme.of(context).textTheme.headline3,
                 ),
-                Lottie.network(
-                    'https://assets4.lottiefiles.com/packages/lf20_dopee6e0.json'),
+                Lottie.asset(
+                  Assets.lottie.catsInABox,
+                ),
                 Text(
                   'The only cat-tracking app',
                   style: Theme.of(context).textTheme.headline6,

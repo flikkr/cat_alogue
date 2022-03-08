@@ -2,7 +2,7 @@ import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/models/encounter/encounter.dart';
 import 'package:cat_alogue/models/gallery_options.dart';
 import 'package:cat_alogue/models/media_item/media_item.dart';
-import 'package:cat_alogue/services/utils/route_generator.dart';
+import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:cat_alogue/widgets/list/encounter_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

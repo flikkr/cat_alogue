@@ -13,3 +13,6 @@ linter:
     avoid_classes_with_only_static_members: false
     prefer_single_quotes: true
     sort_pub_dependencies: false
+    require_trailing_commas: false
+    body_might_complete_normally_nullable: false
+

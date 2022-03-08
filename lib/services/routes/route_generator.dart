@@ -1,6 +1,6 @@
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/models/gallery_options.dart';
-import 'package:cat_alogue/screens/add_cat/cat_form_page.dart';
+import 'package:cat_alogue/screens/add_cat/cat_form_screen.dart';
 import 'package:cat_alogue/screens/auth/sign_in_screen.dart';
 import 'package:cat_alogue/screens/cat_detail/cat_detail.dart';
 import 'package:cat_alogue/screens/debug/debug_screen.dart';

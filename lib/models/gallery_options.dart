@@ -1,6 +1,5 @@
+import 'package:cat_alogue/models/media_item/media_item.dart';
 import 'package:flutter/material.dart';
-
-import 'media_item/media_item.dart';
 
 class GalleryOptions {
   final Decoration? backgroundDecoration;

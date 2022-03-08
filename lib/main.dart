@@ -1,6 +1,6 @@
 import 'package:cat_alogue/screens/auth/auth_wrapper.dart';
 import 'package:cat_alogue/services/data/local_database.dart';
-import 'package:cat_alogue/services/utils/route_generator.dart';
+import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

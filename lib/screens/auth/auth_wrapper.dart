@@ -1,7 +1,7 @@
 import 'package:cat_alogue/models/user.dart';
 import 'package:cat_alogue/provider/session_provider.dart';
 import 'package:cat_alogue/screens/auth/sign_in_screen.dart';
-import 'package:cat_alogue/screens/home/home_page.dart';
+import 'package:cat_alogue/screens/home/home_screen.dart';
 import 'package:cat_alogue/services/data/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
