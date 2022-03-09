@@ -4,28 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-var catListPaginator = ChangeNotifierProvider.autoDispose<CatListPaginator>(
-    (_) => CatListPaginator());
+var catListProvider = ChangeNotifierProvider.autoDispose<CatListProvider>(
+  (_) => CatListProvider(),
+);
 
-var homepageVm = Provider<HomePageVm>((ref) => HomePageVm(ref.read));
-
-class CatListPaginator extends ChangeNotifier {
+class CatListProvider extends ChangeNotifier {
   static const int _pageSize = 10;
-  final CatRepository _repo = CatRepository();
+  final CatRepository repo = CatRepository();
   final PagingController<int, Cat> controller =
       PagingController(firstPageKey: 0);
 
-  CatListPaginator() {
+  CatListProvider() {
     paginationFetchNext(0);
   }
 
-  void refreshCatList() {
+  Future<void> refreshCatList() {
     throw UnimplementedError();
   }
 
   Future<void> paginationFetchNext(int pageKey) async {
     try {
-      final cats = await _repo.getCatList();
+      // ignore: avoid_redundant_argument_values
+      final cats = await repo.getCatList(limit: _pageSize);
 
       if (cats.length < _pageSize) {
         controller.appendLastPage(cats);
@@ -33,16 +33,23 @@ class CatListPaginator extends ChangeNotifier {
         final nextPageKey = pageKey + cats.length;
         controller.appendPage(cats, nextPageKey);
       }
-    } catch (e) {
-      
-    }
+    } catch (e) {}
 
     notifyListeners();
   }
-}
 
-class HomePageVm {
-  final Reader _read;
+  Future<bool> deleteCat(String id) async {
+    try {
+      repo.delete(id);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  }
 
-  HomePageVm(this._read);
+  Future<void> removeCatFromList(String id) async {
+    controller.itemList!.removeWhere((cat) => cat.id == id);
+
+    notifyListeners();
+  }
 }

@@ -13,7 +13,7 @@ class LocalDatabase {
   static Future<List<String>?> loadAvatars(BuildContext context) async {
     if (avatarPaths != null) return avatarPaths;
 
-    String manifestJson =
+    final manifestJson =
         await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
     final paths = json
         .decode(manifestJson)

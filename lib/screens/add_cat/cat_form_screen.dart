@@ -21,6 +21,7 @@ class CatFormPage extends HookWidget with Surround {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: body_might_complete_normally_nullable
     useEffect(() {
       context.read(catFormProvider).initState(cat);
     }, []);

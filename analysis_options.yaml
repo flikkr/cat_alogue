@@ -15,4 +15,4 @@ linter:
     sort_pub_dependencies: false
     require_trailing_commas: false
     body_might_complete_normally_nullable: false
-
+    type_annotate_public_apis: false

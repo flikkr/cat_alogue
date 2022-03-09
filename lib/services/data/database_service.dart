@@ -6,6 +6,11 @@ abstract class DbPath {
   static const String statsDoc = '--stats--';
 }
 
+class DatabaseCollection {
+  static final CollectionReference cats =
+      DatabaseService.userDoc.collection(DbPath.cats);
+}
+
 class DatabaseService {
   // Firestore instance
   static final _inst = FirebaseFirestore.instance;

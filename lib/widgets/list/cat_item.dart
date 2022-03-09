@@ -1,9 +1,24 @@
 import 'package:cat_alogue/models/cat/cat.dart';
+import 'package:cat_alogue/screens/home/cat_list_provider.dart';
 import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:stilo/stilo.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:cat_alogue/models/cat/cat.dart';
+import 'package:cat_alogue/provider/cat_form_provider.dart';
+import 'package:cat_alogue/services/utils/surround.dart';
+import 'package:cat_alogue/widgets/input/image_picker.dart';
+import 'package:cat_alogue/widgets/menu/navbar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
 
-class CatItem extends StatelessWidget {
+class CatItem extends HookWidget with Surround {
   final Cat cat;
 
   const CatItem({
@@ -14,30 +29,52 @@ class CatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: InkWell(
-        onTap: () =>
-            Navigator.of(context).pushNamed(Routes.cat_detail, arguments: cat),
-        child: Padding(
-          padding: StiloEdge.all2,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              cat.profileImg?.display(height: 70, width: 70) ?? Container(),
-              StiloSpacing.all2,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    cat.name,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Text(
-                    cat.description ?? '',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
-                ],
-              )
-            ],
+      clipBehavior: Clip.antiAlias,
+      child: Slidable(
+        key: ValueKey(cat.id),
+        endActionPane: ActionPane(
+          motion: ScrollMotion(),
+          dismissible: DismissiblePane(
+            confirmDismiss: () =>
+                context.read(catListProvider).deleteCat(cat.id!),
+            onDismissed: () =>
+                context.read(catListProvider).removeCatFromList(cat.id!),
+          ),
+          children: [
+            SlidableAction(
+              onPressed: (context) {},
+              backgroundColor: Color(0xFFFE4A49),
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+            ),
+          ],
+        ),
+        child: InkWell(
+          onTap: () => Navigator.of(context)
+              .pushNamed(Routes.cat_detail, arguments: cat),
+          child: Padding(
+            padding: StiloEdge.all2,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                cat.profileImg?.display(height: 70, width: 70) ?? Container(),
+                StiloSpacing.all2,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      cat.name,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    Text(
+                      cat.description ?? '',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

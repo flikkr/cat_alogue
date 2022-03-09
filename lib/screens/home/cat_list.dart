@@ -11,32 +11,13 @@ class InfiniteCatList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final catPaginator = useProvider(catListPaginator);
+    final catList = useProvider(catListProvider);
 
     return PagedListView(
-      pagingController: catPaginator.controller,
+      pagingController: catList.controller,
       builderDelegate: PagedChildBuilderDelegate<Cat>(
         itemBuilder: (context, Cat item, index) => CatItem(cat: item),
       ),
     );
-
-    // final catList = useProvider(catListFutureProvider);
-
-    // return catList.when(
-    //   data: (cats) {
-    //     if (cats == null || cats.isEmpty) {
-    //       return SubtitleImage(
-    //         image: Image.asset(Assets.info.catAmico.path),
-    //         subtitle: 'No cats found!',
-    //       );
-    //     }
-    //     return PagedListView(pagingController: pagingController, builderDelegate: builderDelegate)
-    //     return ListView(
-    //       children: cats.map((cat) => CatItem(cat: cat)).toList(),
-    //     );
-    //   },
-    //   loading: () => CatLoader(),
-    //   error: (error, stackTrace) => Container(),
-    // );
   }
 }
