@@ -10,10 +10,14 @@ mixin Surround {
     );
   }
 
-  void showDeleteConfirmationDialog(BuildContext context) {
-    showDialog(
+  Future<bool?> showDeleteConfirmationDialog(BuildContext context) {
+    return showDialog<bool>(
       context: context,
-      builder: (context) => ConfirmDialog(),
+      builder: (context) => const ConfirmDialog(
+        title: 'Delete cat',
+        body:
+            'Are you sure you want to delete this cat? This action cannot be undone.',
+      ),
     );
   }
 }

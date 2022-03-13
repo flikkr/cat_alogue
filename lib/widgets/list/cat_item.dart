@@ -1,20 +1,10 @@
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/screens/home/cat_list_provider.dart';
 import 'package:cat_alogue/services/routes/route_generator.dart';
+import 'package:cat_alogue/services/utils/surround.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:stilo/stilo.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:cat_alogue/models/cat/cat.dart';
-import 'package:cat_alogue/provider/cat_form_provider.dart';
-import 'package:cat_alogue/services/utils/surround.dart';
-import 'package:cat_alogue/widgets/input/image_picker.dart';
-import 'package:cat_alogue/widgets/menu/navbar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
 
@@ -35,14 +25,13 @@ class CatItem extends HookWidget with Surround {
         endActionPane: ActionPane(
           motion: ScrollMotion(),
           dismissible: DismissiblePane(
-            confirmDismiss: () =>
-                context.read(catListProvider).deleteCat(cat.id!),
+            confirmDismiss: () => showDeleteDialog(context),
             onDismissed: () =>
                 context.read(catListProvider).removeCatFromList(cat.id!),
           ),
           children: [
             SlidableAction(
-              onPressed: (context) {},
+              onPressed: (context) => showDeleteDialog(context),
               backgroundColor: Color(0xFFFE4A49),
               foregroundColor: Colors.white,
               icon: Icons.delete,
@@ -79,5 +68,11 @@ class CatItem extends HookWidget with Surround {
         ),
       ),
     );
+  }
+
+  Future<bool> showDeleteDialog(BuildContext context) async {
+    final shouldDelete = await showDeleteConfirmationDialog(context);
+
+    return shouldDelete != null && shouldDelete;
   }
 }

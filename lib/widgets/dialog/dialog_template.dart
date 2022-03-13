@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';
 
 class DialogTemplate extends StatelessWidget {
-  final Widget child;
+  final List<Widget> children;
+  final CrossAxisAlignment crossAxisAlignment;
 
-  const DialogTemplate({required this.child});
+  const DialogTemplate({
+    required this.children,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,11 @@ class DialogTemplate extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           color: Colors.white,
         ),
-        child: child,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: crossAxisAlignment,
+          children: children,
+        ),
       ),
     );
   }

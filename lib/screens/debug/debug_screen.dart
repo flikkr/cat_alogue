@@ -9,13 +9,14 @@ class DebugScreen extends StatelessWidget with Surround {
         title: const Text('Debug screen'),
       ),
       body: ElevatedButton(
-        onPressed: () => _toggleDialog(context),
+        onPressed: () => openDialog(context),
         child: const Text('Press me!'),
       ),
     );
   }
 
-  void _toggleDialog(BuildContext context) {
-    showConcatulationsDialog(context);
+  void openDialog(BuildContext context) {
+    // showConcatulationsDialog(context);
+    showDeleteConfirmationDialog(context);
   }
 }
