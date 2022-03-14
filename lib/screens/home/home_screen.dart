@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
         padding: StiloEdge.all2,
-        child: const Center(child: InfiniteCatList()),
+        child: Center(child: CatList()),
       ),
     );
   }

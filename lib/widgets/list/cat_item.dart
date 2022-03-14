@@ -3,12 +3,11 @@ import 'package:cat_alogue/screens/home/cat_list_provider.dart';
 import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:cat_alogue/services/utils/surround.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
 
-class CatItem extends HookWidget with Surround {
+class CatItem extends HookConsumerWidget with Surround {
   final Cat cat;
 
   const CatItem({
@@ -17,7 +16,7 @@ class CatItem extends HookWidget with Surround {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       clipBehavior: Clip.antiAlias,
       child: Slidable(
@@ -27,7 +26,7 @@ class CatItem extends HookWidget with Surround {
           dismissible: DismissiblePane(
             confirmDismiss: () => showDeleteDialog(context),
             onDismissed: () =>
-                context.read(catListProvider).removeCatFromList(cat.id!),
+                ref.read(catListProvider).removeCatFromList(cat.id!),
           ),
           children: [
             SlidableAction(

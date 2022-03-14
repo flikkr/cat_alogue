@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stilo/stilo.dart';
 
-class CatDetail extends HookWidget {
+class CatDetailScreen extends HookWidget {
   final Cat cat;
 
-  const CatDetail(this.cat);
+  const CatDetailScreen(this.cat);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,6 @@ class CatDetail extends HookWidget {
     final controller = useScrollController();
 
     return Scaffold(
-      // floatingActionButton: FloatingActionButton.extended(onPressed: onPressed, label: label),
       body: Stack(
         children: [
           CustomScrollView(

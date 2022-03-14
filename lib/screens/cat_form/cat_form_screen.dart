@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/provider/cat_form_provider.dart';
 import 'package:cat_alogue/services/utils/surround.dart';
@@ -5,40 +7,58 @@ import 'package:cat_alogue/widgets/input/image_picker.dart';
 import 'package:cat_alogue/widgets/menu/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
 
-class CatFormPage extends HookWidget with Surround {
-  final Cat? cat;
+class CatFormPage extends ConsumerWidget with Surround {
+  final Cat? initialCatData;
   final _formKey = GlobalKey<FormState>();
 
   CatFormPage({
     Key? key,
-    this.cat,
+    this.initialCatData,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // ignore: body_might_complete_normally_nullable
-    useEffect(() {
-      context.read(catFormProvider).initState(cat);
-    }, []);
-
-    final _cat = useProvider(catProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _catForm = ref.read(catFormProvider(initialCatData).notifier);
+    final _cat = ref.watch(catFormProvider(initialCatData));
 
     return Scaffold(
       appBar: Navbar(
-        title: _cat.state.id == null ? 'New cat' : 'Edit cat',
+        title: _cat.id == null ? 'New cat' : 'Edit cat',
         backgroundColor: Colors.blue,
+        centerTitle: false,
+        actions: [
+          TextButton.icon(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(Colors.black),
+            ),
+            onPressed: () async {
+              _formKey.currentState!.save();
+              if (!_formKey.currentState!.validate()) return;
+
+              final hasSaved = await _catForm.saveCat();
+
+              if (hasSaved) {
+                Navigator.of(context).pop();
+                showConcatulationsDialog(context);
+              } else {}
+            },
+            icon: const Icon(Icons.save),
+            label: const Text(
+              'Save',
+            ),
+          )
+        ],
       ),
       body: Padding(
         padding: StiloEdge.all2,
         child: SingleChildScrollView(
           child: FormBuilder(
             key: _formKey,
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.always,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -46,9 +66,8 @@ class CatFormPage extends HookWidget with Surround {
                 Center(
                   child: ImagePicker(
                     isCircle: true,
-                    initialImage: _cat.state.profileImg,
-                    onTap: () =>
-                        context.read(catFormProvider).getProfileImage(),
+                    initialImage: _cat.profileImg,
+                    onTap: () => _catForm.getProfileImage(),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -69,9 +88,9 @@ class CatFormPage extends HookWidget with Surround {
                 StiloSpacing.vert3,
                 FormBuilderTextField(
                   name: 'name',
-                  initialValue: cat?.name,
+                  initialValue: initialCatData?.name,
                   onChanged: (value) =>
-                      _cat.state = _cat.state.copyWith(name: value ?? ''),
+                      _catForm.cat = _cat.copyWith(name: value ?? ''),
                   decoration: const InputDecoration(
                     labelText: 'Cat name',
                     prefixIcon: Icon(Icons.text_fields),
@@ -83,7 +102,9 @@ class CatFormPage extends HookWidget with Surround {
                 StiloSpacing.vert3,
                 FormBuilderTextField(
                   name: 'description',
-                  initialValue: cat?.description,
+                  initialValue: initialCatData?.description,
+                  onChanged: (value) =>
+                      _catForm.cat = _cat.copyWith(description: value),
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   maxLength: 120,
@@ -99,7 +120,7 @@ class CatFormPage extends HookWidget with Surround {
                       child: FormBuilderTextField(
                         name: 'location',
                         controller: TextEditingController(
-                          text: _cat.state.location?.address,
+                          text: _cat.location?.address,
                         ),
                         decoration: const InputDecoration(
                           labelText: 'Location found',
@@ -112,25 +133,13 @@ class CatFormPage extends HookWidget with Surround {
                       height: 55,
                       width: 55,
                       child: TextButton(
-                        onPressed: () async => context
-                            .read(catFormProvider)
-                            .getAddressFromLocation(),
+                        onPressed: () async =>
+                            _catForm.getAddressFromLocation(),
                         child: const Icon(Icons.gps_fixed),
                       ),
                     ),
                   ],
                 ),
-                StiloSpacing.vert3,
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    await context.read(catFormProvider).saveCat();
-
-                    Navigator.of(context).pop();
-                    if (cat?.id == null) showConcatulationsDialog(context);
-                  },
-                  icon: const Icon(Icons.save),
-                  label: const Text('Save Cat'),
-                )
               ],
             ),
           ),

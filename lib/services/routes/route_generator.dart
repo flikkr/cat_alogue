@@ -1,8 +1,8 @@
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/models/gallery_options.dart';
-import 'package:cat_alogue/screens/add_cat/cat_form_screen.dart';
 import 'package:cat_alogue/screens/auth/sign_in_screen.dart';
-import 'package:cat_alogue/screens/cat_detail/cat_detail.dart';
+import 'package:cat_alogue/screens/cat_detail/cat_detail_screen.dart';
+import 'package:cat_alogue/screens/cat_form/cat_form_screen.dart';
 import 'package:cat_alogue/screens/debug/debug_screen.dart';
 import 'package:cat_alogue/screens/debug/sample_animations.dart';
 import 'package:cat_alogue/screens/view_photo/gallery.dart';
@@ -29,10 +29,11 @@ class RouteGenerator {
         return _format(Routes.base, SignInScreen());
       case Routes.cat_detail:
         return args is Cat
-            ? _format(Routes.cat_detail, CatDetail(args))
+            ? _format(Routes.cat_detail, CatDetailScreen(args))
             : _errorRoute();
       case Routes.add_cat:
-        return _format(Routes.add_cat, CatFormPage(cat: args as Cat?));
+        return _format(
+            Routes.add_cat, CatFormPage(initialCatData: args as Cat?));
       case Routes.sample_animations:
         return _format(Routes.sample_animations, SampleAnimations());
       case Routes.gallery_view:

@@ -4,13 +4,12 @@ import 'package:cat_alogue/screens/auth/sign_in_screen.dart';
 import 'package:cat_alogue/screens/home/home_screen.dart';
 import 'package:cat_alogue/services/data/database_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AuthWrapper extends HookWidget {
+class AuthWrapper extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final user = useProvider(userStreamProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userStreamProvider);
 
     return user.when(
       data: (value) {
