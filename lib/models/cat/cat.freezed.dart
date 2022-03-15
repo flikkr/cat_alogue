@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'cat.dart';
@@ -22,7 +23,7 @@ class _$CatTearOff {
   const _$CatTearOff();
 
   _Cat call(
-      {String? id,
+      {@JsonKey(ignore: true) String? id,
       String name = '',
       String? description,
       bool isFavourite = false,
@@ -40,7 +41,7 @@ class _$CatTearOff {
     );
   }
 
-  Cat fromJson(Map<String, Object> json) {
+  Cat fromJson(Map<String, Object?> json) {
     return Cat.fromJson(json);
   }
 }
@@ -50,6 +51,7 @@ const $Cat = _$CatTearOff();
 
 /// @nodoc
 mixin _$Cat {
+  @JsonKey(ignore: true)
   String? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
@@ -68,7 +70,7 @@ abstract class $CatCopyWith<$Res> {
   factory $CatCopyWith(Cat value, $Res Function(Cat) then) =
       _$CatCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
+      {@JsonKey(ignore: true) String? id,
       String name,
       String? description,
       bool isFavourite,
@@ -134,7 +136,7 @@ abstract class _$CatCopyWith<$Res> implements $CatCopyWith<$Res> {
       __$CatCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
+      {@JsonKey(ignore: true) String? id,
       String name,
       String? description,
       bool isFavourite,
@@ -199,7 +201,7 @@ class __$CatCopyWithImpl<$Res> extends _$CatCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Cat extends _Cat {
   _$_Cat(
-      {this.id,
+      {@JsonKey(ignore: true) this.id,
       this.name = '',
       this.description,
       this.isFavourite = false,
@@ -211,13 +213,14 @@ class _$_Cat extends _Cat {
   factory _$_Cat.fromJson(Map<String, dynamic> json) => _$$_CatFromJson(json);
 
   @override
+  @JsonKey(ignore: true)
   final String? id;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   @override
   final String name;
   @override
   final String? description;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool isFavourite;
   @override
@@ -235,37 +238,30 @@ class _$_Cat extends _Cat {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Cat &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.isFavourite, isFavourite) ||
-                const DeepCollectionEquality()
-                    .equals(other.isFavourite, isFavourite)) &&
-            (identical(other.profileImg, profileImg) ||
-                const DeepCollectionEquality()
-                    .equals(other.profileImg, profileImg)) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality()
-                    .equals(other.location, location)) &&
-            (identical(other.media, media) ||
-                const DeepCollectionEquality().equals(other.media, media)));
+        (other.runtimeType == runtimeType &&
+            other is _Cat &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.isFavourite, isFavourite) &&
+            const DeepCollectionEquality()
+                .equals(other.profileImg, profileImg) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality().equals(other.media, media));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(isFavourite) ^
-      const DeepCollectionEquality().hash(profileImg) ^
-      const DeepCollectionEquality().hash(location) ^
-      const DeepCollectionEquality().hash(media);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(isFavourite),
+      const DeepCollectionEquality().hash(profileImg),
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(media));
 
   @JsonKey(ignore: true)
   @override
@@ -280,7 +276,7 @@ class _$_Cat extends _Cat {
 
 abstract class _Cat extends Cat {
   factory _Cat(
-      {String? id,
+      {@JsonKey(ignore: true) String? id,
       String name,
       String? description,
       bool isFavourite,
@@ -292,19 +288,20 @@ abstract class _Cat extends Cat {
   factory _Cat.fromJson(Map<String, dynamic> json) = _$_Cat.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  String? get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
-  bool get isFavourite => throw _privateConstructorUsedError;
+  bool get isFavourite;
   @override
-  MediaItem? get profileImg => throw _privateConstructorUsedError;
+  MediaItem? get profileImg;
   @override
-  Location? get location => throw _privateConstructorUsedError;
+  Location? get location;
   @override
-  List<MediaItem>? get media => throw _privateConstructorUsedError;
+  List<MediaItem>? get media;
   @override
   @JsonKey(ignore: true)
   _$CatCopyWith<_Cat> get copyWith => throw _privateConstructorUsedError;

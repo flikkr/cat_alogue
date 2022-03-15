@@ -1,4 +1,4 @@
-import 'package:cat_alogue/widgets/dialog/dialog_template.dart';
+import 'package:cat_alogue/widgets/layout/dialog_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';
 
@@ -13,7 +13,7 @@ class ConfirmDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DialogTemplate(
+    return DialogLayout(
       children: [
         Text(
           title,

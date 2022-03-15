@@ -3,7 +3,7 @@
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/provider/cat_form_provider.dart';
 import 'package:cat_alogue/services/utils/surround.dart';
-import 'package:cat_alogue/widgets/input/image_picker.dart';
+import 'package:cat_alogue/widgets/input/single_image_picker.dart';
 import 'package:cat_alogue/widgets/menu/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -64,7 +64,7 @@ class CatFormPage extends ConsumerWidget with Surround {
               children: [
                 StiloSpacing.vert2,
                 Center(
-                  child: ImagePicker(
+                  child: SingleImagePicker(
                     isCircle: true,
                     initialImage: _cat.profileImg,
                     onTap: () => _catForm.getProfileImage(),

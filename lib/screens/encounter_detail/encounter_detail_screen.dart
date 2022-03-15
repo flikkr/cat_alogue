@@ -2,12 +2,11 @@ import 'package:cat_alogue/models/encounter/encounter.dart';
 import 'package:cat_alogue/models/media_item/media_item.dart';
 import 'package:cat_alogue/screens/encounter_detail/encounter_media_tile.dart';
 import 'package:cat_alogue/widgets/menu/navbar.dart';
-import 'package:cat_alogue/widgets/misc/media_badge.dart';
 import 'package:cat_alogue/widgets/screen_result/no_encounters_found.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:intl/intl.dart';
 import 'package:stilo/stilo.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class EncounterDetailScreen extends StatelessWidget {
   static const int videoSize = 2;
@@ -64,13 +63,18 @@ class EncounterDetailScreen extends StatelessWidget {
       crossAxisCount: 4,
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
-      children: mediaList
-          .map(
-            (media) => EncounterMediaTile(
-              mediaItem: media,
-            ),
-          )
-          .toList(),
+      children: mediaList.map(
+        (media) {
+          final tileSize = media.type == MediaType.image ? 1 : 2;
+
+          return StaggeredGridTile.count(
+            key: key,
+            crossAxisCellCount: tileSize,
+            mainAxisCellCount: tileSize,
+            child: EncounterMediaTile(mediaItem: media),
+          );
+        },
+      ).toList(),
     );
   }
 }

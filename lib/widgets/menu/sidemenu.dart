@@ -2,7 +2,7 @@ import 'package:cat_alogue/services/auth/auth.dart';
 import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:flutter/material.dart';
 
-class AppDrawer extends StatelessWidget {
+class Sidemenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(

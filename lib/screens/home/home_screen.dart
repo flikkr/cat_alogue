@@ -1,6 +1,6 @@
 import 'package:cat_alogue/screens/home/cat_list.dart';
 import 'package:cat_alogue/services/routes/route_generator.dart';
-import 'package:cat_alogue/widgets/menu/app_menu.dart';
+import 'package:cat_alogue/widgets/menu/sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';
 
@@ -9,9 +9,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),
-      drawer: AppDrawer(),
+      drawer: Sidemenu(),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.of(context).pushNamed(Routes.add_cat),
+        onPressed: () => Navigator.of(context).pushNamed(Routes.cat_form),
         label: const Text('Add cat 😺'),
       ),
       body: Container(

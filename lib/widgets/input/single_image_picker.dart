@@ -3,7 +3,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';
 
-class ImagePicker extends StatelessWidget {
+class SingleImagePicker extends StatelessWidget {
   final bool isCircle;
   final double? height;
   final double? width;
@@ -11,7 +11,7 @@ class ImagePicker extends StatelessWidget {
   final Function()? onTap;
   final MediaItem? initialImage;
 
-  const ImagePicker({
+  const SingleImagePicker({
     Key? key,
     this.isCircle = false,
     this.height,

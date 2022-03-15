@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';
 
-class DialogTemplate extends StatelessWidget {
+class DialogLayout extends StatelessWidget {
   final List<Widget> children;
   final CrossAxisAlignment crossAxisAlignment;
 
-  const DialogTemplate({
+  const DialogLayout({
     required this.children,
     this.crossAxisAlignment = CrossAxisAlignment.start,
   });

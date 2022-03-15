@@ -7,7 +7,6 @@ part of 'cat.dart';
 // **************************************************************************
 
 _$_Cat _$$_CatFromJson(Map<String, dynamic> json) => _$_Cat(
-      id: json['id'] as String?,
       name: json['name'] as String? ?? '',
       description: json['description'] as String?,
       isFavourite: json['isFavourite'] as bool? ?? false,
@@ -23,7 +22,6 @@ _$_Cat _$$_CatFromJson(Map<String, dynamic> json) => _$_Cat(
     );
 
 Map<String, dynamic> _$$_CatToJson(_$_Cat instance) => <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'description': instance.description,
       'isFavourite': instance.isFavourite,

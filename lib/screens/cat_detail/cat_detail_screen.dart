@@ -19,105 +19,110 @@ class CatDetailScreen extends HookWidget {
     final controller = useScrollController();
 
     return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
-            controller: controller,
-            slivers: [
-              SliverAppBar(
-                expandedHeight: 200,
-                pinned: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 300),
-                    opacity: 1.0,
-                    child: Text(cat.name),
-                  ),
-                  background: GestureDetector(
-                    onTap: () {
-                      if (cat.profileImg == null) return;
-                      Navigator.of(context).pushNamed(
-                        Routes.gallery_view,
-                        arguments: GalleryOptions(
-                          items: [cat.profileImg!],
-                        ),
-                      );
-                    },
-                    child: cat.profileImg?.display(),
-                  ),
-                ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.of(context).pushNamed(Routes.encounter_form),
+        icon: const Icon(Icons.add),
+        label: const Text('Add Encounter'),
+      ),
+      body: CustomScrollView(
+        controller: controller,
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 200,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: AnimatedOpacity(
+                duration: const Duration(milliseconds: 300),
+                opacity: 1.0,
+                child: Text(cat.name),
               ),
-              SliverPadding(
-                padding: StiloEdge.all1,
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate(
-                    List.generate(
-                      5,
-                      (index) => EncounterTile(
-                        encounter: Encounter(
-                            created: DateTime.now(),
-                            description: 'short encounter with stretchy',
-                            media: [
-                              MediaItem(
-                                urlPath: 'https://picsum.photos/200/300',
-                                type: MediaType.image,
-                                source: MediaSource.network,
-                              ),
-                              MediaItem(
-                                urlPath: 'https://picsum.photos/200/300',
-                                type: MediaType.image,
-                                source: MediaSource.network,
-                              ),
-                              MediaItem(
-                                urlPath: 'https://picsum.photos/200/300',
-                                type: MediaType.image,
-                                source: MediaSource.network,
-                              ),
-                              MediaItem(
-                                urlPath: 'https://picsum.photos/200/300',
-                                type: MediaType.image,
-                                source: MediaSource.network,
-                              ),
-                            ]),
-                        isFirst: index == 0,
-                        isLast: index == 4,
+              background: GestureDetector(
+                onTap: () {
+                  if (cat.profileImg == null) return;
+                  Navigator.of(context).pushNamed(
+                    Routes.gallery_view,
+                    arguments: GalleryOptions(
+                      items: [cat.profileImg!],
+                    ),
+                  );
+                },
+                child: cat.profileImg?.display(),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: StiloEdge.all1,
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  ...List.generate(
+                    5,
+                    (index) => EncounterTile(
+                      isFirst: index == 0,
+                      isLast: index == 4,
+                      encounter: Encounter(
+                        created: DateTime.now(),
+                        description: 'Short encounter with stretchy',
+                        media: [
+                          MediaItem(
+                            urlPath: 'https://picsum.photos/200/300',
+                            type: MediaType.image,
+                            source: MediaSource.network,
+                          ),
+                          MediaItem(
+                            urlPath: 'https://picsum.photos/200/300',
+                            type: MediaType.image,
+                            source: MediaSource.network,
+                          ),
+                          MediaItem(
+                            urlPath: 'https://picsum.photos/200/300',
+                            type: MediaType.image,
+                            source: MediaSource.network,
+                          ),
+                          MediaItem(
+                            urlPath: 'https://picsum.photos/200/300',
+                            type: MediaType.video,
+                            source: MediaSource.network,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-                // sliver: SliverStaggeredGrid.countBuilder(
-                //   crossAxisCount: 4,
-                //   // itemCount: cat.media?.length ?? 0,
-                //   itemCount: 10,
-                //   itemBuilder: (BuildContext context, int index) => Hero(
-                //     tag: index,
-                //     child: Material(
-                //       clipBehavior: Clip.antiAlias,
-                //       borderRadius: BorderRadius.circular(10),
-                //       child: InkWell(
-                //         onTap: () => Navigator.of(context).pushNamed(
-                //           Routes.gallery_view,
-                //           arguments: GalleryOptions(
-                //             initialIndex: index,
-                //             items: cat.media,
-                //           ),
-                //         ),
-                //         child: Image.asset(
-                //           cat.media![index].urlPath,
-                //           fit: BoxFit.cover,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                //   staggeredTileBuilder: (int index) =>
-                //       StaggeredTile.count(2, index.isEven ? 2 : 3),
-                //   mainAxisSpacing: 4.0,
-                //   crossAxisSpacing: 4.0,
-                // ),
-              )
-            ],
-          ),
+                  StiloSpacing.vert16,
+                ],
+              ),
+            ),
+            // sliver: SliverStaggeredGrid.countBuilder(
+            //   crossAxisCount: 4,
+            //   // itemCount: cat.media?.length ?? 0,
+            //   itemCount: 10,
+            //   itemBuilder: (BuildContext context, int index) => Hero(
+            //     tag: index,
+            //     child: Material(
+            //       clipBehavior: Clip.antiAlias,
+            //       borderRadius: BorderRadius.circular(10),
+            //       child: InkWell(
+            //         onTap: () => Navigator.of(context).pushNamed(
+            //           Routes.gallery_view,
+            //           arguments: GalleryOptions(
+            //             initialIndex: index,
+            //             items: cat.media,
+            //           ),
+            //         ),
+            //         child: Image.asset(
+            //           cat.media![index].urlPath,
+            //           fit: BoxFit.cover,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            //   staggeredTileBuilder: (int index) =>
+            //       StaggeredTile.count(2, index.isEven ? 2 : 3),
+            //   mainAxisSpacing: 4.0,
+            //   crossAxisSpacing: 4.0,
+            // ),
+          )
         ],
       ),
     );

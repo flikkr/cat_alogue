@@ -50,20 +50,6 @@ class MediaItem {
     this.created = created ?? DateTime.now();
   }
 
-  // MediaItem copyWith({
-  //   String? path,
-  //   String? subtitle,
-  //   MediaSource? source,
-  //   MediaType? type,
-  // }) {
-  //   return MediaItem(
-  //     urlPath: path ?? this.urlPath,
-  //     subtitle: subtitle as Widget? ?? this.subtitle,
-  //     type: type ?? this.type,
-  //     source: source ?? this.source,
-  //   );
-  // }
-
   Widget? display({
     double width = 100,
     double height = 100,

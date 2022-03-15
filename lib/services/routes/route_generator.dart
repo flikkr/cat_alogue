@@ -7,6 +7,7 @@ import 'package:cat_alogue/screens/cat_form/cat_form_screen.dart';
 import 'package:cat_alogue/screens/debug/debug_screen.dart';
 import 'package:cat_alogue/screens/debug/sample_animations.dart';
 import 'package:cat_alogue/screens/encounter_detail/encounter_detail_screen.dart';
+import 'package:cat_alogue/screens/encounter_form/encounter_form_screen.dart';
 import 'package:cat_alogue/screens/view_photo/gallery.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,9 @@ import 'package:flutter/material.dart';
 abstract class Routes {
   static const String base = '/';
   static const String cat_list = '/cats';
-  static const String add_cat = '/cat';
   static const String cat_detail = '/cats/detail';
+  static const String cat_form = '/cats/form';
+  static const String encounter_form = '/cats/encounters/form';
   static const String encounter_detail = '/cats/encounters/detail';
   static const String gallery_view = '/gallery_view';
   static const String sample_animations = '/sample_anim';
@@ -34,9 +36,11 @@ class RouteGenerator {
         return args is Cat
             ? _format(Routes.cat_detail, CatDetailScreen(args))
             : _errorRoute();
-      case Routes.add_cat:
+      case Routes.cat_form:
         return _format(
-            Routes.add_cat, CatFormPage(initialCatData: args as Cat?));
+          Routes.cat_form,
+          CatFormPage(initialCatData: args as Cat?),
+        );
       case Routes.encounter_detail:
         return args is Encounter
             ? _format(
@@ -44,8 +48,16 @@ class RouteGenerator {
                 EncounterDetailScreen(encounter: args),
               )
             : _errorRoute();
+      case Routes.encounter_form:
+        return _format(
+          Routes.encounter_form,
+          EncounterFormScreen(initialEncounterData: args as Encounter?),
+        );
       case Routes.sample_animations:
-        return _format(Routes.sample_animations, SampleAnimations());
+        return _format(
+          Routes.sample_animations,
+          SampleAnimations(),
+        );
       case Routes.gallery_view:
         return args is GalleryOptions
             ? _format(Routes.cat_detail, Gallery(args))
