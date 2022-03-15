@@ -8,7 +8,7 @@ part 'cat.g.dart';
 @freezed
 class Cat with _$Cat {
   factory Cat({
-    String? id,
+    @JsonKey(ignore: true) String? id,
     @Default('') String name,
     String? description,
     @Default(false) bool isFavourite,

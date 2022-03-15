@@ -2,7 +2,6 @@ import 'package:cat_alogue/gen/assets.gen.dart';
 import 'package:cat_alogue/widgets/dialog/dialog_template.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stilo/stilo.dart';
 
 class ConcatulationsDialog extends StatelessWidget {
   @override

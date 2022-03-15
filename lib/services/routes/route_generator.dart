@@ -1,10 +1,12 @@
 import 'package:cat_alogue/models/cat/cat.dart';
+import 'package:cat_alogue/models/encounter/encounter.dart';
 import 'package:cat_alogue/models/gallery_options.dart';
 import 'package:cat_alogue/screens/auth/sign_in_screen.dart';
 import 'package:cat_alogue/screens/cat_detail/cat_detail_screen.dart';
 import 'package:cat_alogue/screens/cat_form/cat_form_screen.dart';
 import 'package:cat_alogue/screens/debug/debug_screen.dart';
 import 'package:cat_alogue/screens/debug/sample_animations.dart';
+import 'package:cat_alogue/screens/encounter_detail/encounter_detail_screen.dart';
 import 'package:cat_alogue/screens/view_photo/gallery.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,7 @@ abstract class Routes {
   static const String cat_list = '/cats';
   static const String add_cat = '/cat';
   static const String cat_detail = '/cats/detail';
+  static const String encounter_detail = '/cats/encounters/detail';
   static const String gallery_view = '/gallery_view';
   static const String sample_animations = '/sample_anim';
   static const String debug_screen = '/debug';
@@ -34,6 +37,13 @@ class RouteGenerator {
       case Routes.add_cat:
         return _format(
             Routes.add_cat, CatFormPage(initialCatData: args as Cat?));
+      case Routes.encounter_detail:
+        return args is Encounter
+            ? _format(
+                Routes.encounter_detail,
+                EncounterDetailScreen(encounter: args),
+              )
+            : _errorRoute();
       case Routes.sample_animations:
         return _format(Routes.sample_animations, SampleAnimations());
       case Routes.gallery_view:

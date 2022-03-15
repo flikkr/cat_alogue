@@ -22,7 +22,7 @@ class CatItem extends HookConsumerWidget with Surround {
       child: Slidable(
         key: ValueKey(cat.id),
         endActionPane: ActionPane(
-          motion: ScrollMotion(),
+          motion: const ScrollMotion(),
           dismissible: DismissiblePane(
             confirmDismiss: () => showDeleteDialog(context),
             onDismissed: () =>
@@ -31,7 +31,7 @@ class CatItem extends HookConsumerWidget with Surround {
           children: [
             SlidableAction(
               onPressed: (context) => showDeleteDialog(context),
-              backgroundColor: Color(0xFFFE4A49),
+              backgroundColor: const Color(0xFFFE4A49),
               foregroundColor: Colors.white,
               icon: Icons.delete,
               label: 'Delete',

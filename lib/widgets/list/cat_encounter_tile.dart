@@ -1,4 +1,5 @@
 import 'package:cat_alogue/models/encounter/encounter.dart';
+import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:stilo/stilo.dart';
 import 'package:timeline_tile/timeline_tile.dart';
@@ -35,7 +36,10 @@ class EncounterTile extends StatelessWidget {
           borderRadius: StiloBorderRadius.allLg,
           clipBehavior: Clip.antiAlias,
           child: InkWell(
-            onTap: () {},
+            onTap: () => Navigator.of(context).pushNamed(
+              Routes.encounter_detail,
+              arguments: encounter,
+            ),
             child: Padding(
               padding: StiloEdge.all2,
               child: Column(

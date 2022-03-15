@@ -37,6 +37,7 @@ dependencies:
   bot_toast: ^4.0.1
   timeline_tile: ^2.0.0
   flutter_slidable: ^1.2.0
+  video_thumbnail: ^0.4.6
 
   # State Management
   hooks_riverpod: ^1.0.1
@@ -51,6 +52,7 @@ dependencies:
   form_builder_validators: ^7.6.1
   uuid: ^3.0.6
   stilo: ^2.0.0
+  intl: ^0.17.0
   path_provider: ^2.0.9
   # audioplayers: ^0.19.1
   geocoding: ^2.0.4

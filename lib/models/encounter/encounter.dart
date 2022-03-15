@@ -3,10 +3,10 @@ import 'package:cat_alogue/models/media_item/media_item.dart';
 class Encounter {
   final String? description;
   final List<MediaItem>? media;
-  final DateTime date;
+  final DateTime created;
 
   Encounter({
-    required this.date,
+    required this.created,
     this.description,
     this.media,
   });

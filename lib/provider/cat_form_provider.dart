@@ -1,9 +1,9 @@
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/models/location/location.dart' as location;
-import 'package:firebase_storage/firebase_storage.dart' as fb_storage;
 import 'package:cat_alogue/models/media_item/media_item.dart';
-import 'package:cat_alogue/repositories/cat/cat_repository.dart';
+import 'package:cat_alogue/repositories/cat_repository.dart';
 import 'package:cat_alogue/services/utils/geo.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -64,7 +64,7 @@ class CatFormProvider extends StateNotifier<Cat> {
     try {
       await _repo.save(state);
       return true;
-    } on fb_storage.FirebaseException catch (e) {
+    } on FirebaseException {
       return false;
     }
   }

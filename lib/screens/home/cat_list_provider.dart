@@ -1,5 +1,5 @@
 import 'package:cat_alogue/models/cat/cat.dart';
-import 'package:cat_alogue/repositories/cat/cat_repository.dart';
+import 'package:cat_alogue/repositories/cat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -26,6 +26,8 @@ class CatListProvider extends ChangeNotifier {
     try {
       // ignore: avoid_redundant_argument_values
       final cats = await repo.getCatList(limit: _pageSize);
+
+      if (cats == null) return;
 
       if (cats.length < _pageSize) {
         controller.appendLastPage(cats);

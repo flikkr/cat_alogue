@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:cat_alogue/models/cat/cat.dart';
-import 'package:cat_alogue/models/interface/repository.dart';
 import 'package:cat_alogue/models/media_item/media_item.dart';
+import 'package:cat_alogue/repositories/repository.dart';
 import 'package:cat_alogue/services/data/database_service.dart';
 import 'package:cat_alogue/services/utils/helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,7 +14,7 @@ class CatRepository extends IRepository<Cat> {
   static QueryDocumentSnapshot? lastSnapshot;
 
   // Get the list of cats from the user
-  Future<List<Cat>> getCatList({int limit = 10}) async {
+  Future<List<Cat>?> getCatList({int limit = 10}) async {
     QuerySnapshot<Map<String, dynamic>> queryResult;
 
     if (lastSnapshot == null) {
