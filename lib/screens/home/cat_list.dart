@@ -10,7 +10,7 @@ class CatList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final catList = ref.watch(catListProvider);
+    final catList = ref.watch(catListProvider.notifier);
 
     return PagedListView(
       pagingController: catList.controller,

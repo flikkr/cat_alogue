@@ -62,6 +62,7 @@ class CatDetailScreen extends HookWidget {
                       isFirst: index == 0,
                       isLast: index == 4,
                       encounter: Encounter(
+                        title: 'Test',
                         created: DateTime.now(),
                         description: 'Short encounter with stretchy',
                         media: [

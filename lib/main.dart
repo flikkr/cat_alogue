@@ -3,6 +3,7 @@ import 'package:cat_alogue/services/data/local_database.dart';
 import 'package:cat_alogue/services/routes/route_generator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stilo/stilo.dart';
@@ -45,6 +46,12 @@ class MyApp extends StatelessWidget {
         ),
         appBarTheme: const AppBarTheme(centerTitle: true),
       ),
+      supportedLocales: const [
+        Locale('en'),
+      ],
+      localizationsDelegates: const [
+        FormBuilderLocalizations.delegate,
+      ],
       initialRoute: Routes.base,
       onGenerateRoute: RouteGenerator.generateRoute,
       home: AuthWrapper(),

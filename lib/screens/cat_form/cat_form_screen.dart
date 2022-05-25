@@ -22,8 +22,9 @@ class CatFormPage extends ConsumerWidget with Surround {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _catForm = ref.read(catFormProvider(initialCatData).notifier);
-    final _cat = ref.watch(catFormProvider(initialCatData));
+    final _catForm = ref.watch(catFormProvider(initialCatData).notifier);
+    final _cat = ref.watch(
+      catFormProvider(initialCatData));
 
     return Scaffold(
       appBar: Navbar(
@@ -44,7 +45,9 @@ class CatFormPage extends ConsumerWidget with Surround {
               if (hasSaved) {
                 Navigator.of(context).pop();
                 showConcatulationsDialog(context);
-              } else {}
+              } else {
+                //TODO: handle when form has not been saved
+              }
             },
             icon: const Icon(Icons.save),
             label: const Text(
@@ -58,7 +61,7 @@ class CatFormPage extends ConsumerWidget with Surround {
         child: SingleChildScrollView(
           child: FormBuilder(
             key: _formKey,
-            autovalidateMode: AutovalidateMode.always,
+            autovalidateMode: AutovalidateMode.disabled,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -96,7 +99,10 @@ class CatFormPage extends ConsumerWidget with Surround {
                     prefixIcon: Icon(Icons.text_fields),
                   ),
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.required(
+                      context,
+                      errorText: 'Please add a name'
+                    ),
                   ]),
                 ),
                 StiloSpacing.vert3,

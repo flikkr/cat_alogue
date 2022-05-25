@@ -22,11 +22,13 @@ class CatItem extends HookConsumerWidget with Surround {
       child: Slidable(
         key: ValueKey(cat.id),
         endActionPane: ActionPane(
+          dragDismissible: false,
           motion: const ScrollMotion(),
+          extentRatio: 0.3,
           dismissible: DismissiblePane(
             confirmDismiss: () => showDeleteDialog(context),
             onDismissed: () =>
-                ref.read(catListProvider).removeCatFromList(cat.id!),
+                ref.read(catListProvider.notifier).removeCatFromList(cat.id!),
           ),
           children: [
             SlidableAction(
@@ -69,6 +71,7 @@ class CatItem extends HookConsumerWidget with Surround {
     );
   }
 
+  /// Returns `true` if the user has clicked on the delete button, `false` or `null` if they cancel
   Future<bool> showDeleteDialog(BuildContext context) async {
     final shouldDelete = await showDeleteConfirmationDialog(context);
 

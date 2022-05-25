@@ -1,20 +1,22 @@
 import 'package:cat_alogue/models/cat/cat.dart';
 import 'package:cat_alogue/repositories/cat_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-var catListProvider = ChangeNotifierProvider.autoDispose<CatListProvider>(
+var catListProvider =
+    StateNotifierProvider.autoDispose<CatListProvider, List<Cat>?>(
   (_) => CatListProvider(),
 );
 
-class CatListProvider extends ChangeNotifier {
+class CatListProvider extends StateNotifier<List<Cat>?> {
   static const int _pageSize = 10;
-  final CatRepository repo = CatRepository();
-  final PagingController<int, Cat> controller =
-      PagingController(firstPageKey: 0);
 
-  CatListProvider() {
+  final CatRepository repo = CatRepository();
+  final PagingController<int, Cat> controller = PagingController(
+    firstPageKey: 0,
+  );
+
+  CatListProvider() : super([]) {
     paginationFetchNext(0);
   }
 
@@ -35,9 +37,9 @@ class CatListProvider extends ChangeNotifier {
         final nextPageKey = pageKey + cats.length;
         controller.appendPage(cats, nextPageKey);
       }
-    } catch (e) {}
 
-    notifyListeners();
+      state = controller.itemList;
+    } catch (e) {}
   }
 
   Future<bool> deleteCat(String id) async {
@@ -52,6 +54,6 @@ class CatListProvider extends ChangeNotifier {
   Future<void> removeCatFromList(String id) async {
     controller.itemList!.removeWhere((cat) => cat.id == id);
 
-    notifyListeners();
+    state = controller.itemList;
   }
 }
