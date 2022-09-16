@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -22,6 +24,12 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to the camera so that the user can take pictures and videos and upload them directly through the app.</string>
+	<key>NSMicrophoneUsageDescription </key>
+	<string>This app requires access to the microphone so that videos recorded through the app will have an audio recording of events.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to the photo library so that the user can upload images or videos to the app.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,11 +49,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires access to the photo library so that the user can upload images or videos to the app.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app requires access to the camera so that the user can take pictures and videos and upload them directly through the app.</string>
-	<key>NSMicrophoneUsageDescription </key>
-	<string>This app requires access to the microphone so that videos recorded through the app will have an audio recording of events.</string>
 </dict>
 </plist>
