@@ -100,7 +100,6 @@ class CatFormPage extends ConsumerWidget with Surround {
                   ),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(
-                      context,
                       errorText: 'Please add a name'
                     ),
                   ]),

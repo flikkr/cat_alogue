@@ -4,11 +4,11 @@ class Encounter {
   final String title;
   final String? description;
   final List<MediaItem>? media;
-  final DateTime created;
+  final DateTime date;
 
   Encounter({
     required this.title,
-    required this.created,
+    required this.date,
     this.description,
     this.media,
   });

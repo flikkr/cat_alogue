@@ -6,6 +6,7 @@ import 'package:cat_alogue/widgets/screen_result/no_encounters_found.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:stilo/stilo.dart';
 
 class EncounterDetailScreen extends StatelessWidget {
@@ -20,6 +21,7 @@ class EncounterDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting();
     return Scaffold(
       appBar: Navbar(
         title: 'Encounter',
@@ -28,7 +30,7 @@ class EncounterDetailScreen extends StatelessWidget {
           Center(
             child: Padding(
               padding: StiloEdge.horiz2,
-              child: Text(DateFormat('dd/MM/yyyy').format(encounter.created)),
+              child: Text(DateFormat('dd/MM/yyyy').format(encounter.date)),
             ),
           )
         ],
