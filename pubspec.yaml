@@ -67,8 +67,8 @@ dev_dependencies:
   # Util
   flutter_gen_runner:
   build_runner: ^2.2.0
-  freezed:
   json_serializable:
+  freezed:
   lint: ^1.10.0
 
 flutter:
